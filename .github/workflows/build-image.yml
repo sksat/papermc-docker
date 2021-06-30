@@ -13,6 +13,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Get Paper commit
+        id: paper-commit
+        shell: bash
+        run: |
+          source .env
+          echo "::set-output name=PAPER_COMMIT::${PAPER_COMMIT}"
+
       - name: Docker meta
         id: meta
         uses: crazy-max/ghaction-docker-meta@v2
@@ -41,6 +48,8 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
+          build-args: |
+            "PAPER_COMMIT=${{ steps.paper-commit.outputs.PAPER_COMMIT }}"
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
