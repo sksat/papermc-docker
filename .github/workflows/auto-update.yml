@@ -20,17 +20,20 @@ jobs:
         run: ./update.sh
 
       - name: check diff
+        id: check-diff
         shell: bash
         run: |
           if [[ $(git diff) ]]; then
-            echo "::set-env name=HAS_DIFF::true";
+            echo "::set-output name=HAS_DIFF::true";
+            source .env
+            echo "::set-output name=PAPER_COMMIT::${PAPER_COMMIT}"
           fi
 
       - name: commit & push
-        if: env.HAS_DIFF == 'true'
+        if: ${{ steps.check-diff.outputs.HAS_DIFF }} == 'true'
         shell: bash
         run: |
           git add .env
           source .env
-          git commit -m "update: Paper to ${PAPER_COMMIT}"
+          git commit -m "update: Paper to ${{ steps.check-diff.outputs.PAPER_COMMIT }}"
           git push origin update/paper
