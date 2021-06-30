@@ -22,8 +22,9 @@ jobs:
       - name: check diff
         shell: bash
         run: |
-          git diff --exit-code
-          if [ 0 -ne $? ]; then echo "::set-env name=HAS_DIFF::true"; fi
+          if [[ $(git diff) ]]; then
+            echo "::set-env name=HAS_DIFF::true";
+          fi
 
       - name: commit & push
         if: env.HAS_DIFF == 'true'
