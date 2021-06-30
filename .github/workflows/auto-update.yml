@@ -1,6 +1,6 @@
 on:
   schedule:
-    - cron:  '0 * * * *'
+    - cron:  '15 * * * *'
 
 jobs:
   update:
@@ -21,7 +21,7 @@ jobs:
 
       - name: check diff
         shell: bash
-        run:
+        run: |
           git diff --exit-code
           if [ 0 -ne $? ]; then echo "::set-env name=HAS_DIFF::true"; fi
 
