@@ -2,7 +2,10 @@ version: "3.7"
 
 services:
   paper:
-    build: .
+    build:
+      context: .
+      args:
+        - PAPER_COMMIT=$PAPER_COMMIT
     #image: ghcr.io/sksat/mc.yohane.su:main
     #image: sksat/mc.yohane.su:github-actions
     restart: always
