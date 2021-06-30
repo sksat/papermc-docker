@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'Dockerfile'
+      - '.env'
       - '.github/workflows/**'
 
 jobs:
