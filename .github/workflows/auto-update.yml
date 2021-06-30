@@ -1,0 +1,41 @@
+on:
+  schedule:
+    - cron:  '0 * * * *'
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: update/paper
+
+      - name: rebase
+        shell: bash
+        run: git pull --rebase origin main
+
+      - name: update Paper commit
+        shell: bash
+        run: ./update.sh
+
+      - name: check diff
+        id: check-diff
+        shell: bash
+        run: |
+          if [[ $(git diff) ]]; then
+            echo "::set-output name=HAS_DIFF::true";
+            source .env
+            echo "::set-output name=PAPER_COMMIT::${PAPER_COMMIT}"
+          fi
+
+      - name: commit & push
+        if: ${{ steps.check-diff.outputs.HAS_DIFF }} == 'true'
+        shell: bash
+        run: |
+          git add .env
+          source .env
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "update: Paper to ${{ steps.check-diff.outputs.PAPER_COMMIT }}"
+          git push origin update/paper
