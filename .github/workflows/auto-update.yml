@@ -1,0 +1,28 @@
+on:
+  schedule:
+    - cron:  '0 * * * *'
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: update/paper
+
+      - name: rebase
+        shell: bash
+        run: git rebase develop
+
+      - name: update Paper commit
+        shell: bash
+        run: ./update.sh
+
+      - name: commit & push
+        shell: bash
+        run: |
+          git diff
+          git add .env
+          source .env
+          git commit -m "update: Paper to ${PAPER_COMMIT}"
