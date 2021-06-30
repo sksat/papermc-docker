@@ -19,10 +19,19 @@ jobs:
         shell: bash
         run: ./update.sh
 
+      - name: check diff
+        shell: bash
+        run:
+          git diff --exit-code
+          if [ 0 -ne $? ]; then
+            echo "::set-env name=HAS_DIFF::true"
+          fi
+
       - name: commit & push
+        if: env.HAS_DIFF == 'true'
         shell: bash
         run: |
-          git diff
           git add .env
           source .env
           git commit -m "update: Paper to ${PAPER_COMMIT}"
+          git push origin update/paper
