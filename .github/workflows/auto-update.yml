@@ -35,5 +35,7 @@ jobs:
         run: |
           git add .env
           source .env
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -m "update: Paper to ${{ steps.check-diff.outputs.PAPER_COMMIT }}"
           git push origin update/paper
