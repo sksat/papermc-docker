@@ -13,7 +13,7 @@ jobs:
 
       - name: rebase
         shell: bash
-        run: git rebase develop
+        run: git rebase origin/develop
 
       - name: update Paper commit
         shell: bash
