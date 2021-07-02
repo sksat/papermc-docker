@@ -1,0 +1,15 @@
+version: "3.7"
+
+services:
+  paper:
+    image: ghcr.io/sksat/papermc-docker:${IMG_TAG}
+
+    stdin_open: true
+    ports:
+      - 9225:9225
+      - 25565:25565
+      - 25575:25575
+    environment:
+      JAVA_TOOL_OPTIONS: "-Xms1G -Xmx1G"
+    volumes:
+      - ./data:/app
