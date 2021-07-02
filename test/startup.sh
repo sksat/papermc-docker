@@ -10,15 +10,17 @@ fi
 mkdir -p data
 echo "eula=true" > data/eula.txt
 
-env IMG_TAG=${IMG_TAG} docker-compose up -d
-sleep 60
+echo "image tag: ${IMG_TAG}"
+env IMG_TAG="${IMG_TAG}" docker-compose up -d
+sleep 5
 docker-compose ps
 
-if [ -z $(docker-compose ps -q) ]; then
+if [ ! -z "$(docker-compose ps | grep 'Exit 1')" ]; then
 	echo "error: service is down"
 	exit 1
 fi
 
+sleep 60
 MCSTATUS_JSON=$(mcstatus localhost json)
 echo "${MCSTATUS_JSON}"
 
@@ -26,9 +28,10 @@ MCSTATUS_ONLINE=$(echo ${MCSTATUS_JSON} | jq .online)
 
 if [ "${MCSTATUS_ONLINE}" != 'true' ]; then
 	echo "Minecraft server is down"
+	exit 1
 fi
 
 docker-compose logs
-docker-compose down
+env IMG_TAG="${IMG_TAG}" docker-compose down
 rm -rf data
 exit 0
