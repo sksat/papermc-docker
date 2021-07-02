@@ -20,18 +20,26 @@ if [ ! -z "$(docker-compose ps | grep 'Exit 1')" ]; then
 	exit 1
 fi
 
+echo "wait for start..."
 sleep 60
+docker-compose logs
+
 MCSTATUS_JSON=$(mcstatus localhost json)
 echo "${MCSTATUS_JSON}"
 
 MCSTATUS_ONLINE=$(echo ${MCSTATUS_JSON} | jq .online)
+MCSTATUS_VERSION=$(echo ${MCSTATUS_JSON} | jq .version)
 
 if [ "${MCSTATUS_ONLINE}" != 'true' ]; then
 	echo "Minecraft server is down"
 	exit 1
 fi
 
-docker-compose logs
+if [ "${MCSTATUS_VERSION}" != "\"${MINECRAFT_VERSION}\"" ]; then
+	echo "Minecraft version mismatch: ${MCSTATUS_VERSION}"
+	exit 1
+fi
+
 env IMG_TAG="${IMG_TAG}" docker-compose down
 rm -rf data
 exit 0
