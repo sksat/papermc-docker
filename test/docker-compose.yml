@@ -3,12 +3,6 @@ version: "3.7"
 services:
   paper:
     image: ghcr.io/sksat/papermc-docker:${IMG_TAG}
-    #image: sksat/papermc_docker:github-actions
-    #build:
-    #  context: .
-    #  args:
-    #    - PAPER_COMMIT=$PAPER_COMMIT
-    restart: always
 
     stdin_open: true
     ports:
