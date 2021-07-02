@@ -6,6 +6,7 @@ on:
       - 'Dockerfile'
       - '.env'
       - '.github/workflows/build-image.yml'
+      - 'test/startup.sh'
 
 jobs:
   build:
