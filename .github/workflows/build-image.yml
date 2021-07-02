@@ -65,4 +65,4 @@ jobs:
 
       - name: startup test
         run: |
-          ./test/startup.sh
+          ./test/startup.sh ${GITHUB_REF#refs/heads/}

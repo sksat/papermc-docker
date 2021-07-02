@@ -1,9 +1,14 @@
 #!/bin/bash
 
+source .env
+if [ $# -eq 1 ]; then
+	IMG_TAG=$1
+fi
+
 mkdir -p data
 echo "eula=true" > data/eula.txt
 
-docker-compose up -d
+env IMG_TAG=${IMG_TAG} docker-compose up -d
 sleep 60
 docker-compose ps
 
