@@ -18,7 +18,7 @@ RUN ls Paper/build/libs -lh
 RUN cp Paper/build/libs/Paper-1.17-R0.1-SNAPSHOT.jar Paper/paperclip.jar
 
 # Run
-FROM adoptopenjdk/openjdk11:alpine-jre
+FROM adoptopenjdk/openjdk16:alpine-jre
 WORKDIR /app
 COPY --from=builder /build/Paper/paperclip.jar /bin/
 COPY --from=builder /build/Paper/LICENSE.md /licenses/Paper/
