@@ -2,7 +2,7 @@ version: "3.7"
 
 services:
   paper:
-    image: ghcr.io/sksat/papermc_docker:${IMG_TAG}
+    image: ghcr.io/sksat/papermc-docker:${IMG_TAG}
     #image: sksat/papermc_docker:github-actions
     #build:
     #  context: .
