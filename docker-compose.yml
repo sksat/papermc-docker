@@ -2,12 +2,12 @@ version: "3.7"
 
 services:
   paper:
-    build:
-      context: .
-      args:
-        - PAPER_COMMIT=$PAPER_COMMIT
-    #image: ghcr.io/sksat/mc.yohane.su:main
-    #image: sksat/mc.yohane.su:github-actions
+    image: ghcr.io/sksat/papermc_docker:${IMG_TAG}
+    #image: sksat/papermc_docker:github-actions
+    #build:
+    #  context: .
+    #  args:
+    #    - PAPER_COMMIT=$PAPER_COMMIT
     restart: always
 
     stdin_open: true

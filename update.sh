@@ -16,4 +16,5 @@ if [ $? -eq 0 ]; then
 fi
 
 # update
-echo "PAPER_COMMIT=${PAPER_COMMIT_LATEST}" > .env
+sed -e '/PAPER_COMMIT=/d' .env > .env
+echo "PAPER_COMMIT=${PAPER_COMMIT_LATEST}" >> .env
