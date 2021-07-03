@@ -4,7 +4,7 @@ pwd
 
 source ../.env
 if [ $# -eq 1 ]; then
-	IMG_TAG=$1
+	IMG_TAG=$(echo "$1" | sed 's/\//-/')
 fi
 
 mkdir -p data
