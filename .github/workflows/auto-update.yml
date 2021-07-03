@@ -30,9 +30,12 @@ jobs:
         id: check-diff
         shell: bash
         run: |
+          git diff
           if [[ $(git diff) ]]; then
-            echo "::set-output name=HAS_DIFF::true";
+            echo "diff is not empty"
+            echo "::set-output name=HAS_DIFF::true"
             source .env
+            echo "PAPER_COMMIT: ${PAPER_COMMIT}"
             echo "::set-output name=PAPER_COMMIT::${PAPER_COMMIT}"
           fi
 
@@ -40,6 +43,7 @@ jobs:
         if: ${{ steps.check-diff.outputs.HAS_DIFF }} == 'true'
         shell: bash
         run: |
+          git status
           git add .env
           source .env
           git commit -m "update: Paper to ${{ steps.check-diff.outputs.PAPER_COMMIT }}"
