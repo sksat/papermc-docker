@@ -47,4 +47,4 @@ jobs:
           git add .env
           source .env
           git commit -m "update: Paper to ${{ steps.check-diff.outputs.PAPER_COMMIT }}"
-          git push origin update/paper
+          git push -f origin update/paper
