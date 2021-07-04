@@ -37,6 +37,9 @@ jobs:
             source .env
             echo "PAPER_COMMIT: ${PAPER_COMMIT}"
             echo "::set-output name=PAPER_COMMIT::${PAPER_COMMIT}"
+          else
+            echo "no diff"
+            echo "::set-output name=HAS_DIFF::false"
           fi
 
       - name: commit & push
