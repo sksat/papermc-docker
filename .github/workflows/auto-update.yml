@@ -43,7 +43,7 @@ jobs:
           fi
 
       - name: commit & push
-        if: ${{ steps.check-diff.outputs.HAS_DIFF }} == 'true'
+        if: failure() && (${{ steps.check-diff.outputs.HAS_DIFF }} == 'true')
         shell: bash
         run: |
           git status
