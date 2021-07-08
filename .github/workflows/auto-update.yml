@@ -43,9 +43,11 @@ jobs:
           fi
 
       - name: commit & push
-        if: failure() && (${{ steps.check-diff.outputs.HAS_DIFF }} == 'true')
+        if: failure() && (steps.check-diff.outputs.HAS_DIFF == 'true')
         shell: bash
         run: |
+          echo "HAS_DIFF: ${{ steps.check-diff.outputs.HAS_DIFF }}"
+          echo "update: Paper to ${{ steps.check-diff.outputs.PAPER_COMMIT }}"
           git status
           git add .env
           source .env
