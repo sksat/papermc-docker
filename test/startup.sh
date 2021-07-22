@@ -21,7 +21,8 @@ if [ ! -z "$(docker-compose ps | grep 'Exit 1')" ]; then
 fi
 
 echo "wait for start..."
-sleep 60
+#TODO: change to timeout
+sleep 120
 docker-compose logs
 
 MCSTATUS_JSON=$(mcstatus localhost json)
