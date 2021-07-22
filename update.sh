@@ -27,6 +27,11 @@ fi
 diff <(echo $MINECRAFT_VERSION) <(echo $MINECRAFT_VERSION_LATEST)
 if [ $? -ne 0 ]; then
 	echo "Minecraft version update!!!!!"
+	if [[ $1 != "minecraft" ]]; then
+		echo "please update manually: ./update.sh minecraft"
+		rm .env_latest
+		exit 1
+	fi
 fi
 
 # update
