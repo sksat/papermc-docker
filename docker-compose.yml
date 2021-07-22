@@ -7,6 +7,7 @@ services:
     #build:
     #  context: .
     #  args:
+    #    - PAPER_VERSION=$PAPER_VERSION
     #    - PAPER_COMMIT=$PAPER_COMMIT
     restart: always
 
