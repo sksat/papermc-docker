@@ -36,7 +36,7 @@ if [ "${MCSTATUS_ONLINE}" != 'true' ]; then
 	exit 1
 fi
 
-if [ "${MCSTATUS_VERSION}" != "\"${MINECRAFT_VERSION}\"" ]; then
+if [ "${MCSTATUS_VERSION}" != "Paper \"${MINECRAFT_VERSION}\"" ]; then
 	echo "Minecraft version mismatch: ${MCSTATUS_VERSION}"
 	exit 1
 fi
