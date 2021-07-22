@@ -28,6 +28,8 @@ jobs:
         shell: bash
         run: |
           source .env
+          echo "::set-output name=MINECRAFT_VERSION::${MINECRAFT_VERSION}"
+          echo "::set-output name=PAPER_VERSION::${PAPER_VERSION}"
           echo "::set-output name=PAPER_COMMIT::${PAPER_COMMIT}"
 
       - name: Docker meta
@@ -59,6 +61,8 @@ jobs:
         with:
           context: .
           build-args: |
+            "MINECRAFT_VERSION=${{ steps.paper-commit.outputs.MINECRAFT_VERSION }}"
+            "PAPER_VERSION=${{ steps.paper-commit.outputs.PAPER_VERSION }}"
             "PAPER_COMMIT=${{ steps.paper-commit.outputs.PAPER_COMMIT }}"
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}

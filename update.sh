@@ -6,8 +6,9 @@ cd Paper
 
 tmp_ver=$(cat gradle.properties | grep 'version =')
 tmp_mcver=$(cat gradle.properties | grep 'mcVersion')
-MINECRAFT_VERSION_LATEST=${tmp_mcver:12}
-PAPER_VERSION_LATEST=${tmp_ver:10}
+
+MINECRAFT_VERSION_LATEST=$(echo "${tmp_mcver}" | sed -e "s/mcVersion = //")
+PAPER_VERSION_LATEST=$(echo "${tmp_ver}" | sed -e "s/version = //" | sed -e "s/${MINECRAFT_VERSION_LATEST}-//")
 PAPER_COMMIT_LATEST=$(git rev-parse HEAD)
 
 cd ..
