@@ -38,6 +38,19 @@ jobs:
         with:
           images: ghcr.io/${{ github.repository }},sksat/${{ github.event.repository.name }}
 
+      - name: Set Tags
+        id: tags
+        shell: bash
+        run: |
+          tags=${{ steps.meta.outputs.tags }}
+          if [[ $(git symbolic-ref --short HEAD) == 'paper-version' ]];
+            mc_version=${{ steps.paper-commit.outputs.MINECRAFT_VERSION }}
+            paper_version=${{ steps.paper-commit.outputs.PAPER_VERSION }}
+            tags="${tags},mc_version,paper_version"
+          fi
+          echo "tags: ${tags}"
+          echo "::set-output name=tags::${tags}"
+
       - name: Set up Buildx
         uses: docker/setup-buildx-action@v1
 
@@ -65,7 +78,7 @@ jobs:
             "PAPER_VERSION=${{ steps.paper-commit.outputs.PAPER_VERSION }}"
             "PAPER_COMMIT=${{ steps.paper-commit.outputs.PAPER_COMMIT }}"
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: ${{ steps.tags.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new
