@@ -33,7 +33,7 @@ do
 		break
 	fi
 	echo "waiting...${SECONDS}"
-	if [ $SECONDS -gt 120 ]; then
+	if [ $SECONDS -gt 300 ]; then
 		echo "timeout"
 		break
 	fi
