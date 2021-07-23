@@ -46,7 +46,7 @@ jobs:
           ${{ steps.meta.outputs.tags }}
           EOS
           )
-          if [[ $(git symbolic-ref --short HEAD) == 'paper-version' ]]; then
+          if [[ $(git symbolic-ref --short HEAD) == 'main' ]]; then
             mc_version="${{ github.repository }}:${{ steps.paper-commit.outputs.MINECRAFT_VERSION }}"
             paper_version="${{ github.repository }}:${{ steps.paper-commit.outputs.PAPER_VERSION }}"
             mc_version=$(echo -e "ghcr.io/${mc_version}\n${mc_version}")
