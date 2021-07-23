@@ -63,7 +63,7 @@ jobs:
         uses: docker/setup-buildx-action@v1
 
       - name: Login to ghcr.io
-        if: github.event_name != 'pull_request'
+        if: ${{ github.event_name }} != 'pull_request'
         uses: docker/login-action@v1
         with:
           registry: ghcr.io
@@ -71,7 +71,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Login to DockerHub
-        if: github.event_name != 'pull_request'
+        if: ${{ github.event_name }} != 'pull_request'
         uses: docker/login-action@v1
         with:
           username: sksat
@@ -114,4 +114,4 @@ jobs:
 
       - name: startup test
         run: |
-          ./test/startup.sh ${GITHUB_REF#refs/heads/}
+          ./test/startup.sh "${GITHUB_REF#refs/heads/}"
