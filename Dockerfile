@@ -1,4 +1,4 @@
-FROM openjdk:16.0.1-jdk-slim as builder
+FROM openjdk:16.0.2-jdk-slim as builder
 LABEL maintainer "sksat <sksat@sksat.net>"
 
 ARG MINECRAFT_VERSION
