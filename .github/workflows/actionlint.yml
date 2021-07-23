@@ -18,3 +18,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           level: info
           reporter: github-pr-review
+          filter_mode: nofilter
