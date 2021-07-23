@@ -16,4 +16,5 @@ jobs:
         uses: reviewdog/action-actionlint@v1.5.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          level: info
           reporter: github-pr-review
