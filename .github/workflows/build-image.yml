@@ -46,10 +46,11 @@ jobs:
           ${{ steps.meta.outputs.tags }}
           EOS
           )
+          tags="${tags//$'\n'/\\n}"
           if [[ $(git symbolic-ref --short HEAD) == 'paper-version' ]]; then
             mc_version="${{ steps.paper-commit.outputs.MINECRAFT_VERSION }}"
             paper_version="${{ steps.paper-commit.outputs.PAPER_VERSION }}"
-            tags="${tags},mc_version,paper_version"
+            tags="${tags}\nmc_version\npaper_version"
           fi
           echo "tags: ${tags}"
           echo "::set-output name=tags::${tags}"
