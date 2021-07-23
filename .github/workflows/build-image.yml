@@ -47,8 +47,8 @@ jobs:
           EOS
           )
           if [[ $(git symbolic-ref --short HEAD) == 'paper-version' ]]; then
-            mc_version="${{ steps.paper-commit.outputs.MINECRAFT_VERSION }}"
-            paper_version="${{ steps.paper-commit.outputs.PAPER_VERSION }}"
+            mc_version="${{ github.repository }}:${{ steps.paper-commit.outputs.MINECRAFT_VERSION }}"
+            paper_version="${{ github.repository }}:${{ steps.paper-commit.outputs.PAPER_VERSION }}"
             tags=$(echo -e "${tags}\n${mc_version}\n${paper_version}")
           fi
           echo "tags: ${tags}"
