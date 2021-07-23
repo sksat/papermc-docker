@@ -28,6 +28,8 @@ jobs:
         shell: bash
         run: |
           source .env
+          echo "::set-output name=MINECRAFT_VERSION::${MINECRAFT_VERSION}"
+          echo "::set-output name=PAPER_VERSION::${PAPER_VERSION}"
           echo "::set-output name=PAPER_COMMIT::${PAPER_COMMIT}"
 
       - name: Docker meta
@@ -35,6 +37,27 @@ jobs:
         uses: crazy-max/ghaction-docker-meta@v3
         with:
           images: ghcr.io/${{ github.repository }},sksat/${{ github.event.repository.name }}
+
+      - name: Set Tags
+        id: tags
+        shell: bash
+        run: |
+          tags=$(cat << EOS
+          ${{ steps.meta.outputs.tags }}
+          EOS
+          )
+          if [[ $(git symbolic-ref --short HEAD) == 'paper-version' ]]; then
+            mc_version="${{ github.repository }}:${{ steps.paper-commit.outputs.MINECRAFT_VERSION }}"
+            paper_version="${{ github.repository }}:${{ steps.paper-commit.outputs.PAPER_VERSION }}"
+            mc_version=$(echo -e "ghcr.io/${mc_version}\n${mc_version}")
+            paper_version=$(echo -e "ghcr.io/${paper_version}\n${paper_version}")
+            tags=$(echo -e "${tags}\n${mc_version}\n${paper_version}")
+          fi
+          echo "tags: ${tags}"
+          tags="${tags//'%'/'%25'}"
+          tags="${tags//$'\n'/'%0A'}"
+          tags="${tags//$'\r'/'%0D'}"
+          echo "::set-output name=tags::${tags}"
 
       - name: Set up Buildx
         uses: docker/setup-buildx-action@v1
@@ -59,9 +82,11 @@ jobs:
         with:
           context: .
           build-args: |
+            "MINECRAFT_VERSION=${{ steps.paper-commit.outputs.MINECRAFT_VERSION }}"
+            "PAPER_VERSION=${{ steps.paper-commit.outputs.PAPER_VERSION }}"
             "PAPER_COMMIT=${{ steps.paper-commit.outputs.PAPER_COMMIT }}"
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: ${{ steps.tags.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new
