@@ -46,13 +46,15 @@ jobs:
           ${{ steps.meta.outputs.tags }}
           EOS
           )
-          tags="${tags//$'\n'/\\n}"
           if [[ $(git symbolic-ref --short HEAD) == 'paper-version' ]]; then
             mc_version="${{ steps.paper-commit.outputs.MINECRAFT_VERSION }}"
             paper_version="${{ steps.paper-commit.outputs.PAPER_VERSION }}"
-            tags="${tags}\nmc_version\npaper_version"
+            tags=$(echo -e "${tags}\n${mc_version}\n${paper_version}")
           fi
           echo "tags: ${tags}"
+          tags="${tags//'%'/'%25'}"
+          tags="${tags//$'\n'/'%0A'}"
+          tags="${tags//$'\r'/'%0D'}"
           echo "::set-output name=tags::${tags}"
 
       - name: Set up Buildx
