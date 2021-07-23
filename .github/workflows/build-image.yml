@@ -42,10 +42,10 @@ jobs:
         id: tags
         shell: bash
         run: |
-          tags=${{ steps.meta.outputs.tags }}
+          tags="${{ steps.meta.outputs.tags }}"
           if [[ $(git symbolic-ref --short HEAD) == 'paper-version' ]];
-            mc_version=${{ steps.paper-commit.outputs.MINECRAFT_VERSION }}
-            paper_version=${{ steps.paper-commit.outputs.PAPER_VERSION }}
+            mc_version="${{ steps.paper-commit.outputs.MINECRAFT_VERSION }}"
+            paper_version="${{ steps.paper-commit.outputs.PAPER_VERSION }}"
             tags="${tags},mc_version,paper_version"
           fi
           echo "tags: ${tags}"
