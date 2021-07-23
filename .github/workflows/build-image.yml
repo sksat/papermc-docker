@@ -49,6 +49,8 @@ jobs:
           if [[ $(git symbolic-ref --short HEAD) == 'paper-version' ]]; then
             mc_version="${{ github.repository }}:${{ steps.paper-commit.outputs.MINECRAFT_VERSION }}"
             paper_version="${{ github.repository }}:${{ steps.paper-commit.outputs.PAPER_VERSION }}"
+            mc_version=$(echo -e "ghcr.io/${mc_version}\n${mc_version}")
+            paper_version=$(echo -e "ghcr.io/${paper_version}\n${paper_version}")
             tags=$(echo -e "${tags}\n${mc_version}\n${paper_version}")
           fi
           echo "tags: ${tags}"
