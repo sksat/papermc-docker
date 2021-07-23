@@ -7,7 +7,7 @@ on:
         description: 'tag'
         required: false
   schedule:
-    - cron:  '0 * * * *'
+    - cron:  '0 0 * * *'
 
 jobs:
   update:
@@ -50,7 +50,7 @@ jobs:
           fi
 
       - name: commit & push
-        if: failure() && (steps.check-diff.outputs.HAS_DIFF == 'true')
+        if: failure() && (${{ steps.check-diff.outputs.HAS_DIFF }} == 'true')
         shell: bash
         run: |
           echo "HAS_DIFF: ${{ steps.check-diff.outputs.HAS_DIFF }}"
