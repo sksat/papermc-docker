@@ -6,3 +6,22 @@
 [![auto update](https://github.com/sksat/papermc-docker/actions/workflows/auto-update.yml/badge.svg)](https://github.com/sksat/papermc-docker/actions/workflows/auto-update.yml)
 
 Docker container for PaperMC
+
+- [GitHub Container Registry](https://github.com/sksat/papermc-docker/pkgs/container/papermc-docker)
+- [DockerHub](https://hub.docker.com/r/sksat/papermc-docker)
+
+## Deploy
+
+```sh
+$ git clone https://github.com/sksat/papermc-docker
+$ cd papermc-docker
+$ mkdir data
+$ echo "eula=true" > data/eula.txt
+$ docker-compose up -d
+```
+
+## Disclaimer
+
+This project use [paperclip system](https://paper.readthedocs.io/en/latest/about/structure.html#id2).
+So this container image does not contain vanilla Minecraft jar file.
+The vanilla Minecraft jar file will be downloaded and patched at the first time the container is started.
