@@ -18,6 +18,7 @@ jobs:
         with:
           ref: update/paper
           fetch-depth: 0
+          token: ${{ secrets.PAT }}
 
       - name: git config
         shell: bash
