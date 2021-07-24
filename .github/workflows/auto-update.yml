@@ -18,6 +18,7 @@ jobs:
         with:
           ref: update/paper
           fetch-depth: 0
+          token: ${{ secrets.PAT }}
 
       - name: git config
         shell: bash
@@ -31,7 +32,9 @@ jobs:
 
       - name: update Paper commit
         shell: bash
-        run: ./update.sh
+        run: |
+          ./update.sh
+          rm -f .env_latest
 
       - name: check diff
         id: check-diff
@@ -50,7 +53,7 @@ jobs:
           fi
 
       - name: commit & push
-        if: failure() && (${{ steps.check-diff.outputs.HAS_DIFF }} == 'true')
+        if: ${{ steps.check-diff.outputs.HAS_DIFF == 'true' }}
         shell: bash
         run: |
           echo "HAS_DIFF: ${{ steps.check-diff.outputs.HAS_DIFF }}"

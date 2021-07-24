@@ -21,6 +21,7 @@ echo "PAPER_COMMIT=${PAPER_COMMIT_LATEST}" >> .env_latest
 diff .env .env_latest
 if [ $? -eq 0 ]; then
 	echo "no update"
+	rm .env_latest
 	exit 0
 fi
 
