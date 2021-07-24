@@ -52,7 +52,7 @@ jobs:
           fi
 
       - name: commit & push
-        if: failure() && (${{ steps.check-diff.outputs.HAS_DIFF }} == 'true')
+        if: steps.check-diff.outputs.HAS_DIFF == 'true'
         shell: bash
         run: |
           echo "HAS_DIFF: ${{ steps.check-diff.outputs.HAS_DIFF }}"
