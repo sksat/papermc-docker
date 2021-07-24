@@ -81,7 +81,7 @@ jobs:
           branch: update/paper
 
       - name: create PR
-        if: !steps.find-pull-request.outputs.head-sha
+        if: ${{ !steps.find-pull-request.outputs.head-sha }}
         run: |
           echo "TODO: create PR here"
 
