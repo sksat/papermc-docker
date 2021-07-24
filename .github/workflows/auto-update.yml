@@ -31,7 +31,9 @@ jobs:
 
       - name: update Paper commit
         shell: bash
-        run: ./update.sh
+        run: |
+          ./update.sh
+          rm .env_latest
 
       - name: check diff
         id: check-diff
