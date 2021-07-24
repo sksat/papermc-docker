@@ -13,6 +13,9 @@ jobs:
   update:
     runs-on: ubuntu-latest
 
+    outputs:
+      HAS_DIFF: ${{ steps.check-diff.outputs.HAS_DIFF }}
+
     steps:
       - uses: actions/checkout@v2
         with:
@@ -63,3 +66,25 @@ jobs:
           source .env
           git commit -m "update: Paper to ${{ steps.check-diff.outputs.PAPER_COMMIT }}"
           git push -f origin update/paper
+
+  pull-req:
+    needs: update
+    if: ${{ needs.update.outputs.HAS_DIFF == 'true' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: find PR
+        uses: juliangruber/find-pull-request-action@v1
+        id: find-pull-request
+        with:
+          base: main
+          branch: update/paper
+
+      - name: create PR
+        if: !steps.find-pull-request.outputs.head-sha
+        run: |
+          echo "TODO: create PR here"
+
+      - name: update PR description
+        run: |
+          echo "TODO: update PR here"
