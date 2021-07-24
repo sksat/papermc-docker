@@ -33,7 +33,7 @@ jobs:
         shell: bash
         run: |
           ./update.sh
-          rm .env_latest
+          rm -f .env_latest
 
       - name: check diff
         id: check-diff
