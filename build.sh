@@ -9,10 +9,10 @@ if [[ ${PAPER_VERSION} != "${MINECRAFT_VERSION}"* ]]; then echo "version mismatc
 
 # clone PaperMC if not exists
 if [ ! -d Paper ]; then
-	git config --global user.name sksat && git config --global user.email sksat@sksat.net
 	git clone https://github.com/PaperMC/Paper
 fi
 cd Paper && git checkout $PAPER_COMMIT
+git config --local user.name sksat && git config --local user.email sksat@sksat.net
 
 # version check
 diff <(echo $MINECRAFT_VERSION) <(cat gradle.properties | grep 'mcVersion =' | sed -e 's/mcVersion = //')
