@@ -3,6 +3,7 @@ name: Build Container Image
 on:
   push:
     paths:
+      - 'build.sh'
       - 'Dockerfile'
       - '.env'
       - '.github/workflows/build-image.yml'
