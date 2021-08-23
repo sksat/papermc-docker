@@ -19,6 +19,7 @@ jobs:
         with:
           distribution: 'adopt-openj9'
           java-version: '16.0.2'
+          cache: 'gradle'
 
       - name: Cache Docker Layers
         uses: actions/cache@v2
