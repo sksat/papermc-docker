@@ -19,4 +19,4 @@ time ./gradlew applyPatches && time ./gradlew paperclipJar
 
 find . | grep jar
 ls build/libs -lh
-cp build/libs/Paper-${PAPER_VERSION}.jar Paper/paperclip.jar
+cp build/libs/Paper-${PAPER_VERSION}.jar paperclip.jar
