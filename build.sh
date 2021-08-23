@@ -11,12 +11,12 @@ git clone https://github.com/PaperMC/Paper
 cd Paper && git checkout $PAPER_COMMIT
 
 # version check
-diff <(echo $MINECRAFT_VERSION) <(cat Paper/gradle.properties | grep 'mcVersion =' | sed -e 's/mcVersion = //')
-diff <(echo $PAPER_VERSION) <(cat Paper/gradle.properties | grep 'version =' | sed -e 's/version = //')
+diff <(echo $MINECRAFT_VERSION) <(cat gradle.properties | grep 'mcVersion =' | sed -e 's/mcVersion = //')
+diff <(echo $PAPER_VERSION) <(cat gradle.properties | grep 'version =' | sed -e 's/version = //')
 
-cd Paper && ./gradlew tasks
-cd Paper && time ./gradlew applyPatches && time ./gradlew paperclipJar
+./gradlew tasks
+time ./gradlew applyPatches && time ./gradlew paperclipJar
 
-find Paper | grep jar
-ls Paper/build/libs -lh
-cp Paper/build/libs/Paper-${PAPER_VERSION}.jar Paper/paperclip.jar
+find . | grep jar
+ls build/libs -lh
+cp build/libs/Paper-${PAPER_VERSION}.jar Paper/paperclip.jar
