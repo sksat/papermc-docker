@@ -12,7 +12,11 @@ if [ ! -d Paper ]; then
 	git clone https://github.com/PaperMC/Paper
 fi
 cd Paper && git checkout $PAPER_COMMIT
-git config --local user.name sksat && git config --local user.email sksat@sksat.net
+
+if $CI; then
+	#echo "CI"
+	git config --global user.name sksat && git config --global user.email sksat@sksat.net
+fi
 
 # version check
 diff <(echo $MINECRAFT_VERSION) <(cat gradle.properties | grep 'mcVersion =' | sed -e 's/mcVersion = //')
