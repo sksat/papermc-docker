@@ -6,7 +6,7 @@ if [[ ${PAPER_VERSION} != "${MINECRAFT_VERSION}"* ]]; then echo "version mismatc
 
 # Build PaperMC
 #apt-get update -y && apt-get upgrade -y && apt-get install -y  git patch time
-git config --global user.name sksat && git config --global user.email sksat@sksat
+git config --global user.name sksat && git config --global user.email sksat@sksat.net
 git clone https://github.com/PaperMC/Paper
 cd Paper && git checkout $PAPER_COMMIT
 
