@@ -15,6 +15,16 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+
+      - name: Get Paper commit
+        id: paper-commit
+        shell: bash
+        run: |
+          source .env
+          echo "::set-output name=MINECRAFT_VERSION::${MINECRAFT_VERSION}"
+          echo "::set-output name=PAPER_VERSION::${PAPER_VERSION}"
+          echo "::set-output name=PAPER_COMMIT::${PAPER_COMMIT}"
+
       - uses: actions/checkout@v2
         with:
           repository: PaperMC/Paper
@@ -34,15 +44,6 @@ jobs:
           key: ${{ runner.os }}-buildx-${{ github.sha }}
           restore-keys: |
             ${{ runner.os }}-buildx-
-
-      - name: Get Paper commit
-        id: paper-commit
-        shell: bash
-        run: |
-          source .env
-          echo "::set-output name=MINECRAFT_VERSION::${MINECRAFT_VERSION}"
-          echo "::set-output name=PAPER_VERSION::${PAPER_VERSION}"
-          echo "::set-output name=PAPER_COMMIT::${PAPER_COMMIT}"
 
       - name: Docker meta
         id: meta
