@@ -5,8 +5,9 @@
   "regexManagers": [
     {
       "fileMatch": [".env"],
-      "matchStrings": ["datasource=(?<datasource>.*?) depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\\sENV .*?_VERSION=(?<currentValue>.*)\\s"],
-      "versioningTemplate": "{{#if versioning}}{{versioning}}{{else}}semver{{/if}}"
+      "matchStrings": ["depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\\s.*?_COMMIT=(?<currentValue>.*)\\s"],
+      "versioningTemplate": "git",
+      "dataSourceTemplate": "git-ref"
     }
   ]
 }
