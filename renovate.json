@@ -7,7 +7,7 @@
       "fileMatch": [".env"],
       "matchStrings": ["depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\\s.*?_COMMIT=(?<currentValue>.*)\\s"],
       "versioningTemplate": "git",
-      "dataSourceTemplate": "git-refs"
+      "datasourceTemplate": "git-refs"
     }
   ]
 }
