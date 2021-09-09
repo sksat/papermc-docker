@@ -1,5 +1,13 @@
 {
   "extends": [
     "config:base"
+  ],
+  "regexManagers": [
+    {
+      "fileMatch": [".env"],
+      "matchStrings": ["depName=(?<depName>.*?)?\\s.*?_COMMIT=(?<currentValue>)(?<currentDigest>.*?)\\s"],
+      "versioningTemplate": "git",
+      "datasourceTemplate": "git-refs"
+    }
   ]
 }
