@@ -5,7 +5,7 @@
   "regexManagers": [
     {
       "fileMatch": [".env"],
-      "matchStrings": ["depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\\s.*?_COMMIT=(?<currentValue>.*)\\s"],
+      "matchStrings": ["depName=(?<depName>.*?)?\\s.*?_COMMIT=(?<currentValue>)(?<currentDigest>.*?)\\s"],
       "versioningTemplate": "git",
       "datasourceTemplate": "git-refs"
     }
