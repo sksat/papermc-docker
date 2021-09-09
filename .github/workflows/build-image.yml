@@ -8,6 +8,8 @@ on:
       - '.env'
       - '.github/workflows/build-image.yml'
       - 'test/startup.sh'
+      - 'test/docker-compose.yml'
+      - 'test/server.properties'
 
 jobs:
   build:

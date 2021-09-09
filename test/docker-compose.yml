@@ -13,3 +13,4 @@ services:
       JAVA_TOOL_OPTIONS: "-Xms1G -Xmx1G"
     volumes:
       - ./data:/app
+      - ./server.properties:/app/server.properties
