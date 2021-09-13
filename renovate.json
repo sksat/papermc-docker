@@ -2,6 +2,12 @@
   "extends": [
     "config:base"
   ],
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["digest"],
+      "automerge": true
+    }
+  ],
   "regexManagers": [
     {
       "fileMatch": [".env"],
