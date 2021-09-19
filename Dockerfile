@@ -18,6 +18,7 @@ COPY --from=mc-monitor /bin/mc-monitor /bin/
 RUN mc-monitor version
 
 COPY health.sh /bin/
+COPY entrypoint.sh /bin/
 
-CMD ["java", "-jar", "/bin/paperclip.jar"]
+ENTRYPOINT ["/bin/entrypoint.sh"]
 HEALTHCHECK --start-period=1m --interval=10s --timeout=30s --retries=3 CMD /bin/health.sh
