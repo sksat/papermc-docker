@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'build.sh'
+      - 'health.sh'
       - 'Dockerfile'
       - '.env'
       - '.github/workflows/build-image.yml'
