@@ -15,7 +15,6 @@ COPY Paper/licenses /licenses/Paper/licenses
 #RUN ls /licenses/Paper/licenses
 
 COPY --from=mc-monitor /bin/mc-monitor /bin/
-RUN mc-monitor version
 
 COPY health.sh /bin/
 COPY entrypoint.sh /bin/
