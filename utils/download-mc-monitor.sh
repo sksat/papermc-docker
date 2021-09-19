@@ -5,7 +5,7 @@ MC_MONITOR_VERSION="0.9.0"
 
 mkdir mc-monitor
 cd mc-monitor
-wget 'https://github.com/itzg/mc-monitor/releases/download/${MC_MONITOR_VERSION}/mc-monitor_${MC_MONITOR_VERSION}_linux_amd64.tar.gz' -O mc-monitor.tar.gz
+wget "https://github.com/itzg/mc-monitor/releases/download/${MC_MONITOR_VERSION}/mc-monitor_${MC_MONITOR_VERSION}_linux_amd64.tar.gz" -O mc-monitor.tar.gz
 ls
 tar -xzvf mc-monitor.tar.gz
 ls mc-monitor
