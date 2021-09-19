@@ -5,6 +5,7 @@ on:
     paths:
       - 'build.sh'
       - 'health.sh'
+      - 'entrypoint.sh'
       - 'Dockerfile'
       - '.env'
       - '.github/workflows/build-image.yml'
