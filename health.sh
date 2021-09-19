@@ -12,7 +12,7 @@ echo
 echo "status exit code=${STATUS}"
 
 if [ ${STATUS} -ne 0 ]; then
-  pkill -STOP java
+  pkill -KILL java
 fi
 
 exit 1
