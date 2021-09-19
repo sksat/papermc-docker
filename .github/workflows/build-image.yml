@@ -5,6 +5,7 @@ on:
     paths:
       - 'build.sh'
       - 'health.sh'
+      - 'utils/download-mc-monitor.sh'
       - 'entrypoint.sh'
       - 'Dockerfile'
       - '.env'
