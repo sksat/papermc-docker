@@ -10,10 +10,11 @@ RUN cp ./mc-monitor/mc-monitor /bin/
 FROM adoptopenjdk/openjdk16:alpine-jre
 WORKDIR /app
 COPY Paper/paperclip.jar /bin/
-COPY --from=mc-monitor /bin/mc-monitor /bin/
 COPY Paper/LICENSE.md /licenses/Paper/
 COPY Paper/licenses /licenses/Paper/licenses
-RUN mc-monitor
 #RUN ls /licenses/Paper/licenses
+
+COPY --from=mc-monitor /bin/mc-monitor /bin/
+RUN mc-monitor version
 
 CMD ["java", "-jar", "/bin/paperclip.jar"]
