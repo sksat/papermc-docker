@@ -20,4 +20,4 @@ RUN mc-monitor version
 COPY health.sh /bin/
 
 CMD ["java", "-jar", "/bin/paperclip.jar"]
-HEALTHCHECK --start-period=1m CMD /bin/health.sh
+HEALTHCHECK --start-period=1m --interval=10s --timeout=30s --retries=3 CMD /bin/health.sh
