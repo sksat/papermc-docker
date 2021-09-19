@@ -17,4 +17,7 @@ COPY Paper/licenses /licenses/Paper/licenses
 COPY --from=mc-monitor /bin/mc-monitor /bin/
 RUN mc-monitor version
 
+COPY health.sh /bin/
+
 CMD ["java", "-jar", "/bin/paperclip.jar"]
+HEALTHCHECK --start-period=1m CMD /bin/health.sh
