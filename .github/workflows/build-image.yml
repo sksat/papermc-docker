@@ -66,7 +66,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        base_img: ["openjdk:16.0.2-slim-buster", "adoptopenjdk/openjdk16:alpine-jre"]
+        jdk: ["openjdk", "adoptopenjdk"]
 
     steps:
       - uses: actions/checkout@v2
@@ -97,6 +97,8 @@ jobs:
         uses: crazy-max/ghaction-docker-meta@v3
         with:
           images: ghcr.io/${{ github.repository }},sksat/${{ github.event.repository.name }}
+          flavor:
+            suffix=${{ matrix.jdk }}
 
       - name: Set Tags
         id: tags
@@ -118,6 +120,16 @@ jobs:
           tags="${tags//$'\n'/'%0A'}"
           tags="${tags//$'\r'/'%0D'}"
           echo "::set-output name=tags::${tags}"
+
+      - name: Set base image
+        id: set_base
+        shell: bash
+        run: |
+          if [[ ${{ matrix.jdk }} == 'openjdk' ]]; then
+            echo "::set-output name=base_img::openjdk:16.0.2-slim-buster"
+          elif [[ ${{ matrix.jdk }} == 'adoptopenjdk' ]]
+            echo "::set-output name=base_img::adoptopenjdk/openjdk16:alpine-jre"
+          fi
 
       - name: Login to ghcr.io
         if: ${{ github.event_name }} != 'pull_request'
@@ -145,7 +157,7 @@ jobs:
             "MINECRAFT_VERSION=${{ needs.build_jar.outputs.MINECRAFT_VERSION }}"
             "PAPER_VERSION=${{ needs.build_jar.outputs.PAPER_VERSION }}"
             "PAPER_COMMIT=${{ needs.build_jar.outputs.PAPER_COMMIT }}"
-            "BASE_IMG=${{ matrix.base_img }}"
+            "BASE_IMG=${{ steps.set_base.outputs.base_img }}"
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.tags.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
