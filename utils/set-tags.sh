@@ -32,9 +32,13 @@ function fix_empty(){
 
 	tag=$(echo $tag | sed -e 's/--/-/')
 
+	# remove first
+	tag=$(echo $tag | sed -e 's/:-//')
 	if [[ ${tag:0:1} == '-' ]]; then
 		tag="${tag:1}"
 	fi
+
+	# remove last
 	if [[ ${tag: -1} == '-' ]]; then
 		tag="${tag/%?/}"
 	fi
