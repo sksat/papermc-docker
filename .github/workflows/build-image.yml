@@ -98,14 +98,12 @@ jobs:
         uses: crazy-max/ghaction-docker-meta@v3
         with:
           images: ghcr.io/${{ github.repository }},sksat/${{ github.event.repository.name }}
-          flavor:
-            suffix=-${{ matrix.jdk }}
 
       - name: Set Tags
         id: tags
         shell: bash
         run: |
-          tags=$(cat << EOS | ./utils/set-tags.sh
+          tags=$(cat << EOS | JDK=${{ matrix.jdk }} ./utils/set-tags.sh
           ${{ steps.meta.outputs.tags }}
           EOS
           )
