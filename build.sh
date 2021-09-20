@@ -22,6 +22,11 @@ fi
 diff <(echo $MINECRAFT_VERSION) <(cat gradle.properties | grep 'mcVersion =' | sed -e 's/mcVersion = //')
 diff <(echo $PAPER_VERSION) <(cat gradle.properties | grep 'version =' | sed -e 's/version = //')
 
+if [ -e paperclip.jar ]; then
+	echo "paperclip.jar already exist. skip build."
+	exit
+fi
+
 ./gradlew tasks
 time ./gradlew applyPatches && time ./gradlew paperclipJar
 
