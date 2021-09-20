@@ -7,6 +7,9 @@ if [ $# -eq 1 ]; then
 	IMG_TAG=$(echo "$1" | sed 's/\//-/')
 fi
 
+# image pull test
+docker pull "sksat/papermc-docker:${IMG_TAG}"
+
 mkdir -p data
 echo "eula=true" > data/eula.txt
 
