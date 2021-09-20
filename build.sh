@@ -7,6 +7,11 @@ if [[ ${PAPER_VERSION} != "${MINECRAFT_VERSION}"* ]]; then echo "version mismatc
 # Build PaperMC
 #apt-get update -y && apt-get upgrade -y && apt-get install -y  git patch time
 
+if [ -e Paper/paperclip.jar ]; then
+	echo "paperclip.jar already exist. skip build."
+	exit
+fi
+
 # clone PaperMC if not exists
 if [ ! -d Paper ]; then
 	git clone https://github.com/PaperMC/Paper

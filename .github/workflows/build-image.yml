@@ -12,8 +12,13 @@ on:
       - 'test/server.properties'
 
 jobs:
-  build:
+  build_jar:
     runs-on: ubuntu-latest
+
+    outputs:
+      MINECRAFT_VERSION: ${{ steps.paper-commit.outputs.MINECRAFT_VERSION }}
+      PAPER_VERSION: ${{ steps.paper-commit.outputs.PAPER_VERSION }}
+      PAPER_COMMIT: ${{ steps.paper-commit.outputs.PAPER_COMMIT }}
 
     steps:
       - uses: actions/checkout@v2
@@ -27,17 +32,52 @@ jobs:
           echo "::set-output name=PAPER_VERSION::${PAPER_VERSION}"
           echo "::set-output name=PAPER_COMMIT::${PAPER_COMMIT}"
 
-      - uses: actions/checkout@v2
+      - name: clone Paper
+        uses: actions/checkout@v2
         with:
           repository: PaperMC/Paper
           path: Paper
           ref: ${{ steps.paper-commit.outputs.PAPER_COMMIT }}
 
-      - uses: actions/setup-java@v2.3.0
+      - name: setup JAVA
+        uses: actions/setup-java@v2.3.0
         with:
           distribution: 'adopt-openj9'
           java-version: '16.0.2'
           cache: 'gradle'
+
+      - name: cache paperclip
+        id: cache-paperclip
+        uses: actions/cache@v2
+        with:
+          path: Paper/paperclip.jar
+          key: paperclip-${{ runner.os }}-${{ steps.paper-commit.outputs.PAPER_COMMIT }}
+
+      - name: Build jar
+        run: |
+          ls
+          bash ./build.sh
+
+  build_image:
+    needs: build_jar
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: clone Paper
+        uses: actions/checkout@v2
+        with:
+          repository: PaperMC/Paper
+          path: Paper
+          ref: ${{ needs.build_jar.outputs.PAPER_COMMIT }}
+
+      - name: restore paperclip cache
+        uses: actions/cache@v2
+        with:
+          path: Paper/paperclip.jar
+          key: paperclip-${{ runner.os }}-${{ needs.build_jar.outputs.PAPER_COMMIT }}
 
       - name: Cache Docker Layers
         uses: actions/cache@v2
@@ -62,8 +102,8 @@ jobs:
           EOS
           )
           if [[ $(git symbolic-ref --short HEAD) == 'main' ]]; then
-            mc_version="${{ github.repository }}:${{ steps.paper-commit.outputs.MINECRAFT_VERSION }}"
-            paper_version="${{ github.repository }}:${{ steps.paper-commit.outputs.PAPER_VERSION }}"
+            mc_version="${{ github.repository }}:${{ needs.build_jar.outputs.MINECRAFT_VERSION }}"
+            paper_version="${{ github.repository }}:${{ needs.build_jar.outputs.PAPER_VERSION }}"
             mc_version=$(echo -e "ghcr.io/${mc_version}\n${mc_version}")
             paper_version=$(echo -e "ghcr.io/${paper_version}\n${paper_version}")
             tags=$(echo -e "${tags}\n${mc_version}\n${paper_version}")
@@ -73,12 +113,6 @@ jobs:
           tags="${tags//$'\n'/'%0A'}"
           tags="${tags//$'\r'/'%0D'}"
           echo "::set-output name=tags::${tags}"
-
-      - name: Build jar
-        run: bash ./build.sh
-
-      - name: Set up Buildx
-        uses: docker/setup-buildx-action@v1
 
       - name: Login to ghcr.io
         if: ${{ github.event_name }} != 'pull_request'
@@ -95,14 +129,17 @@ jobs:
           username: sksat
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      - name: Set up Buildx
+        uses: docker/setup-buildx-action@v1
+
       - name: Build and Push
         uses: docker/build-push-action@v2
         with:
           context: .
           build-args: |
-            "MINECRAFT_VERSION=${{ steps.paper-commit.outputs.MINECRAFT_VERSION }}"
-            "PAPER_VERSION=${{ steps.paper-commit.outputs.PAPER_VERSION }}"
-            "PAPER_COMMIT=${{ steps.paper-commit.outputs.PAPER_COMMIT }}"
+            "MINECRAFT_VERSION=${{ needs.build_jar.outputs.MINECRAFT_VERSION }}"
+            "PAPER_VERSION=${{ needs.build_jar.outputs.PAPER_VERSION }}"
+            "PAPER_COMMIT=${{ needs.build_jar.outputs.PAPER_COMMIT }}"
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.tags.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
@@ -118,7 +155,7 @@ jobs:
           mv /tmp/.buildx-cache-new /tmp/.buildx-cache
 
   test:
-    needs: build
+    needs: build_image
 
     runs-on: ubuntu-latest
 
