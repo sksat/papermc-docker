@@ -1,6 +1,7 @@
 #!/bin/bash
 cd `dirname $0`
 pwd
+set -eu
 
 source ../.env
 if [ $# -eq 1 ]; then
