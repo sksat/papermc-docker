@@ -1,4 +1,4 @@
-FROM openjdk:16.0.2-jdk-slim as builder
+FROM alpine as builder
 LABEL maintainer "sksat <sksat@sksat.net>"
 
 FROM alpine as mc-monitor
