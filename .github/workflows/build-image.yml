@@ -98,7 +98,7 @@ jobs:
         with:
           images: ghcr.io/${{ github.repository }},sksat/${{ github.event.repository.name }}
           flavor:
-            suffix=${{ matrix.jdk }}
+            suffix=-${{ matrix.jdk }}
 
       - name: Set Tags
         id: tags
