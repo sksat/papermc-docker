@@ -7,6 +7,11 @@ if [[ ${PAPER_VERSION} != "${MINECRAFT_VERSION}"* ]]; then echo "version mismatc
 # Build PaperMC
 #apt-get update -y && apt-get upgrade -y && apt-get install -y  git patch time
 
+if [ -e paperclip.jar ]; then
+	echo "paperclip.jar already exist. skip build."
+	exit
+fi
+
 # clone PaperMC if not exists
 if [ ! -d Paper ]; then
 	git clone https://github.com/PaperMC/Paper
@@ -21,11 +26,6 @@ fi
 # version check
 diff <(echo $MINECRAFT_VERSION) <(cat gradle.properties | grep 'mcVersion =' | sed -e 's/mcVersion = //')
 diff <(echo $PAPER_VERSION) <(cat gradle.properties | grep 'version =' | sed -e 's/version = //')
-
-if [ -e paperclip.jar ]; then
-	echo "paperclip.jar already exist. skip build."
-	exit
-fi
 
 ./gradlew tasks
 time ./gradlew applyPatches && time ./gradlew paperclipJar
