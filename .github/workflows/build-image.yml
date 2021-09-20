@@ -67,7 +67,6 @@ jobs:
     strategy:
       matrix:
         jdk: ["default", "openjdk", "adoptopenjdk"]
-        hoge: [a, b]
 
     steps:
       - uses: actions/checkout@v2
@@ -105,21 +104,15 @@ jobs:
         id: tags
         shell: bash
         run: |
-          tags=$(cat << EOS
+          tags=$(cat << EOS | ./utils/set-tags.sh
           ${{ steps.meta.outputs.tags }}
           EOS
           )
-          if [[ $(git symbolic-ref --short HEAD) == 'main' ]]; then
-            mc_version="${{ github.repository }}:${{ needs.build_jar.outputs.MINECRAFT_VERSION }}"
-            paper_version="${{ github.repository }}:${{ needs.build_jar.outputs.PAPER_VERSION }}"
-            mc_version=$(echo -e "ghcr.io/${mc_version}\n${mc_version}")
-            paper_version=$(echo -e "ghcr.io/${paper_version}\n${paper_version}")
-            tags=$(echo -e "${tags}\n${mc_version}\n${paper_version}")
-          fi
           echo "tags: ${tags}"
           tags="${tags//'%'/'%25'}"
           tags="${tags//$'\n'/'%0A'}"
           tags="${tags//$'\r'/'%0D'}"
+          exit 1
           echo "::set-output name=tags::${tags}"
 
       - name: Set base image
