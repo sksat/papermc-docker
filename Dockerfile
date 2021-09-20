@@ -7,7 +7,8 @@ RUN ./download-mc-monitor.sh
 RUN cp ./mc-monitor/mc-monitor /bin/
 
 # Run
-FROM adoptopenjdk/openjdk16:alpine-jre
+#FROM adoptopenjdk/openjdk16:alpine-jre
+FROM openjdk:16.0.2-slim-buster
 WORKDIR /app
 COPY Paper/paperclip.jar /bin/
 COPY Paper/LICENSE.md /licenses/Paper/
