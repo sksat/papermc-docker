@@ -11,7 +11,7 @@ FROM adoptopenjdk/openjdk16:alpine-jre
 WORKDIR /app
 COPY Paper/paperclip.jar /bin/
 COPY Paper/LICENSE.md /licenses/Paper/
-COPY Paper/licenses /licenses/Paper/licenses
+#COPY Paper/licenses /licenses/Paper/licenses
 #RUN ls /licenses/Paper/licenses
 
 COPY --from=mc-monitor /bin/mc-monitor /bin/
