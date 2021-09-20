@@ -63,8 +63,10 @@ jobs:
 
   build_image:
     needs: build_jar
-
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        base_img: ["openjdk:16.0.2-slim-buster", "adoptopenjdk/openjdk16:alpine-jre"]
 
     steps:
       - uses: actions/checkout@v2
@@ -143,6 +145,7 @@ jobs:
             "MINECRAFT_VERSION=${{ needs.build_jar.outputs.MINECRAFT_VERSION }}"
             "PAPER_VERSION=${{ needs.build_jar.outputs.PAPER_VERSION }}"
             "PAPER_COMMIT=${{ needs.build_jar.outputs.PAPER_COMMIT }}"
+            "BASE_IMG= ${{ matrix.base_img }}"
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.tags.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
