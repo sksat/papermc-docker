@@ -52,7 +52,7 @@ function add_all(){
 	tags=""
 	tags_tmp=""
 
-	echo "original tag: ${origin}" 1>&2
+	#echo "original tag: ${origin}" 1>&2
 
 	# Add Minecraft Version
 	tags=$(add_mc ${origin})
