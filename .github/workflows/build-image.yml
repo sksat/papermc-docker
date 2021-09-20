@@ -166,8 +166,10 @@ jobs:
 
   test:
     needs: build_image
-
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        jdk: ["openjdk", "adoptopenjdk"]
 
     steps:
       - uses: actions/checkout@v2
@@ -179,4 +181,4 @@ jobs:
 
       - name: startup test
         run: |
-          ./test/startup.sh "${GITHUB_REF#refs/heads/}"
+          ./test/startup.sh "${GITHUB_REF#refs/heads/}-${{ matrix.jdk }}"
