@@ -54,7 +54,9 @@ jobs:
           key: ${{ runner.os }}-paperclip-${{ steps.paper-commit.outputs.PAPER_COMMIT }}
 
       - name: Build jar
-        run: bash ./build.sh
+        run: |
+          ls
+          bash ./build.sh
 
   build_image:
     needs: build_jar
