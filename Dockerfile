@@ -15,9 +15,9 @@ COPY Paper/licenses /licenses/Paper/licenses
 #RUN ls /licenses/Paper/licenses
 
 COPY --from=mc-monitor /bin/mc-monitor /bin/
-RUN mc-monitor version
 
 COPY health.sh /bin/
+COPY entrypoint.sh /bin/
 
-CMD ["java", "-jar", "/bin/paperclip.jar"]
-HEALTHCHECK --start-period=1m CMD /bin/health.sh
+ENTRYPOINT ["/bin/entrypoint.sh"]
+HEALTHCHECK --start-period=5m --interval=20s --timeout=1m --retries=5 CMD /bin/health.sh

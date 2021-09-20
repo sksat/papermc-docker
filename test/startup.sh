@@ -39,6 +39,7 @@ do
 	fi
 done
 
+docker-compose ps
 docker-compose logs
 
 echo "${MCSTATUS_JSON}"

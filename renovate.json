@@ -14,6 +14,13 @@
       "matchStrings": ["depName=(?<depName>.*?)?\\s.*?_COMMIT=(?<currentValue>)(?<currentDigest>.*?)\\s"],
       "versioningTemplate": "git",
       "datasourceTemplate": "git-refs"
+    },
+    {
+      "fileMatch": ["utils/download-mc-monitor.sh"],
+      "matchStrings": [
+        "datasource=(?<datasource>.*?) depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\n.*?_VERSION=\"(?<currentValue>.*)\"\n"
+      ],
+      "versioningTemplate": "{{#if versioning}}{{versioning}}{{else}}semver{{/if}}"
     }
   ]
 }
