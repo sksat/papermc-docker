@@ -50,7 +50,7 @@ jobs:
         id: cache-paperclip
         uses: actions/cache@v2
         with:
-          path: paperclip.jar
+          path: Paper/paperclip.jar
           key: paperclip-${{ runner.os }}-${{ hashFiles('paperclip.jar') }}
 
       - name: Build jar
@@ -69,7 +69,7 @@ jobs:
       - name: restore paperclip cache
         uses: actions/cache@v2
         with:
-          path: paperclip.jar
+          path: Paper/paperclip.jar
           key: paperclip-${{ runner.os }}-${{ hashFiles('paperclip.jar') }}
 
       - name: Cache Docker Layers
