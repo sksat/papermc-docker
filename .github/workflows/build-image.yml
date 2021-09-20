@@ -41,14 +41,15 @@ jobs:
           java-version: '16.0.2'
           cache: 'gradle'
 
+      - name: cache paperclip
+        id: cache-paperclip
+        uses: actions/cache@v2
+        with:
+          path: paperclip.jar
+          key: ${{ runner.os }}-paperclip-${{ steps.paper-commit.outputs.PAPER_COMMIT }}
+
       - name: Build jar
         run: bash ./build.sh
-
-      - name: upload jar as artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: paperclip
-          path: paperclip.jar
 
   build_image:
     needs: build_jar
@@ -58,11 +59,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: download paperclip from artifact
-        uses: actions/download-artifact@v2
+      - name: cache paperclip
+        uses: actions/cache@v2
         with:
-          name: paperclip
           path: paperclip.jar
+          key: ${{ runner.os }}-paperclip-${{ steps.paper-commit.outputs.PAPER_COMMIT }}
 
       - name: Get Paper commit
         id: paper-commit
