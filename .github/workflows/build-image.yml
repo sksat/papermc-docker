@@ -51,7 +51,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: Paper/paperclip.jar
-          key: paperclip-${{ runner.os }}-${{ hashFiles('paperclip.jar') }}
+          key: paperclip-${{ runner.os }}-${{ hashFiles('Paper/paperclip.jar') }}
 
       - name: Build jar
         run: |
@@ -70,7 +70,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: Paper/paperclip.jar
-          key: paperclip-${{ runner.os }}-${{ hashFiles('paperclip.jar') }}
+          key: paperclip-${{ runner.os }}-${{ hashFiles('Paper/paperclip.jar') }}
 
       - name: Cache Docker Layers
         uses: actions/cache@v2
