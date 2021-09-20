@@ -51,7 +51,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: paperclip.jar
-          key: ${{ runner.os }}-paperclip-${{ steps.paper-commit.outputs.PAPER_COMMIT }}
+          key: paperclip-${{ runner.os }}-${{ hashFiles('paperclip.jar') }}
 
       - name: Build jar
         run: |
@@ -66,11 +66,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: cache paperclip
+      - name: restore paperclip cache
         uses: actions/cache@v2
         with:
           path: paperclip.jar
-          key: ${{ runner.os }}-paperclip-${{ needs.build_jar.outputs.PAPER_COMMIT }}
+          key: paperclip-${{ runner.os }}-${{ hashFiles('paperclip.jar') }}
 
       - name: Cache Docker Layers
         uses: actions/cache@v2
