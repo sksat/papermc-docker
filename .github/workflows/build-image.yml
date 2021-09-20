@@ -127,7 +127,7 @@ jobs:
         run: |
           if [[ ${{ matrix.jdk }} == 'openjdk' ]]; then
             echo "::set-output name=base_img::openjdk:16.0.2-slim-buster"
-          elif [[ ${{ matrix.jdk }} == 'adoptopenjdk' ]]
+          elif [[ ${{ matrix.jdk }} == 'adoptopenjdk' ]]; then
             echo "::set-output name=base_img::adoptopenjdk/openjdk16:alpine-jre"
           fi
 
