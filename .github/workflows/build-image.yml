@@ -66,6 +66,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: clone Paper
+        uses: actions/checkout@v2
+        with:
+          repository: PaperMC/Paper
+          path: Paper
+          ref: ${{ steps.paper-commit.outputs.PAPER_COMMIT }}
+
       - name: restore paperclip cache
         uses: actions/cache@v2
         with:
