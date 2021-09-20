@@ -111,7 +111,6 @@ jobs:
           tags="${tags//'%'/'%25'}"
           tags="${tags//$'\n'/'%0A'}"
           tags="${tags//$'\r'/'%0D'}"
-          exit 1
           echo "::set-output name=tags::${tags}"
 
       - name: Set base image
