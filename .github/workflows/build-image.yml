@@ -10,6 +10,7 @@ on:
       - 'Dockerfile'
       - '.env'
       - '.github/workflows/build-image.yml'
+      - 'utils/set-tags.sh'
       - 'test/startup.sh'
       - 'test/docker-compose.yml'
       - 'test/server.properties'
