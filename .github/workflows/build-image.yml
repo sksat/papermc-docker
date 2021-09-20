@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
 
     outputs:
-      MINECRAFT_VERSION: ${{ steps.paper-commit.outputs.PAPER_COMMIT }}
+      MINECRAFT_VERSION: ${{ steps.paper-commit.outputs.MINECRAFT_VERSION }}
       PAPER_VERSION: ${{ steps.paper-commit.outputs.PAPER_VERSION }}
       PAPER_COMMIT: ${{ steps.paper-commit.outputs.PAPER_COMMIT }}
 
