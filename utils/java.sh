@@ -15,7 +15,7 @@ ADOPT_NONOFFICIAL=(
 )
 
 function openjdk_imgs(){
-	for openjdk in "${ADOPT_NONOFFICIAL[@]}"; do
+	for openjdk in "${OPENJDK[@]}"; do
 		oj=(${openjdk[@]})
 		img="${oj[0]}"
 		arch="${oj[1]}"
@@ -45,9 +45,14 @@ if [[ $1 == 'jdk-list' ]]; then
 	# JDK matrix for build jar
 	echo "::set-output JDK_MATRIX=openjdk,adopt"
 elif [[ $1 == 'base-img' ]]; then
+	if [ $# -eq 1 ]; then
+		openjdk_imgs
+		adopt_imgs
+	fi
+
 	if [[ $2 == 'adopt' ]]; then
 		adopt_imgs
-	else
+	elif [[ $2 == 'openjdk' ]]; then
 		openjdk_imgs
 	fi
 fi
