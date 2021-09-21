@@ -83,7 +83,7 @@ jobs:
           && echo ']'
 
   build_image:
-    needs: build_jar, base_img_matrix
+    needs: [build_jar, base_img_matrix]
     runs-on: ubuntu-latest
     strategy:
       matrix:
