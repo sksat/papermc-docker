@@ -52,7 +52,7 @@ do
 done
 
 docker-compose ps
-docker-compose logs
+docker-compose logs -t
 
 echo "${MCSTATUS_JSON}"
 MCSTATUS_VERSION=$(echo ${MCSTATUS_JSON} | jq .version)
