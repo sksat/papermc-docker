@@ -21,7 +21,7 @@ function openjdk_imgs(){
 		arch="${oj[1]}"
 
 		tag=$(cut -d':' -f 2 <<<${img})
-		echo "$img"
+		echo "\"$img\""
 	done
 }
 
@@ -37,7 +37,7 @@ function adopt_imgs(){
 		#echo "tag: $tag"
 		#echo "arch: $arch"
 
-		echo "$img"
+		echo "\"$img\""
 	done
 }
 
