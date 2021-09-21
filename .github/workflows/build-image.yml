@@ -8,6 +8,7 @@ on:
       - 'utils/download-mc-monitor.sh'
       - 'entrypoint.sh'
       - 'Dockerfile'
+      - '.dockerignore'
       - '.env'
       - '.github/workflows/build-image.yml'
       - 'utils/set-tags.sh'
