@@ -132,8 +132,8 @@ jobs:
         id: tags
         shell: bash
         env:
-          JDK: ${{ steps.img-info.output.jdk }}
-          BASE_IMG: ${{ steps.img-info.output.base }}
+          JDK: ${{ steps.img-info.outputs.jdk }}
+          BASE_IMG: ${{ steps.img-info.outputs.base }}
         run: |
           tags=$(cat << EOS | ./utils/set-tags.sh
           ${{ steps.meta.outputs.tags }}
