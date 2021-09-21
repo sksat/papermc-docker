@@ -50,7 +50,7 @@ jobs:
           path: Paper/paperclip.jar
           key: paperclip-${{ runner.os }}-${{ steps.paper-commit.outputs.PAPER_COMMIT }}
 
-      - name: setup JAVA
+      - name: setup Java
         if: steps.cache-paperclip.outputs.cache-hit != 'true'
         uses: actions/setup-java@v2.3.0
         with:
