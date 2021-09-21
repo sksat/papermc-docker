@@ -173,7 +173,7 @@ jobs:
             "MINECRAFT_VERSION=${{ needs.build_jar.outputs.MINECRAFT_VERSION }}"
             "PAPER_VERSION=${{ needs.build_jar.outputs.PAPER_VERSION }}"
             "PAPER_COMMIT=${{ needs.build_jar.outputs.PAPER_COMMIT }}"
-            "BASE_IMG=${{ steps.set_base.outputs.base_img }}"
+            "BASE_IMG=${{ matrix.base_img }}"
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.tags.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
