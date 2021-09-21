@@ -125,7 +125,13 @@ jobs:
         id: img-info
         shell: bash
         run: |
-          echo "::set-output name=jdk::openjdk"
+          jdk="adopt"
+          if [[ ${{ matrix.base_img }} =~ "openjdk" ]]; then
+            jdk="openjdk"
+          elif [[ ${{ matrix.base_img }} =~ "adopt" ]]; then
+            jdk="adopt"
+          fi
+          echo "::set-output name=jdk::${jdk}"
           echo "::set-output name=base::alpine"
 
       - name: Set Tags
