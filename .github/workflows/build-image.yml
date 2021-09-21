@@ -79,7 +79,7 @@ jobs:
         id: set-matrix
         run: |
           imgs=$(./utils/java.sh base-img adopt)
-          imgs=$(echo ${imgs} | tr -d  | sed -e 's/ /, /g')
+          imgs=$(echo "${imgs}" | sed -e 's/ /, /g')
           echo -n '::set-output name=matrix::[' \
           && echo -n ${imgs} \
           && echo ']'

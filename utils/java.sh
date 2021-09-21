@@ -14,7 +14,7 @@ ADOPT_NONOFFICIAL=(
   #"adoptopenjdk/openjdk16:armv7l-debianslim-jre-16.0.1_9 arm/v7"
 )
 
-function openjdk_img(){
+function openjdk_imgs(){
 	for openjdk in "${ADOPT_NONOFFICIAL[@]}"; do
 		oj=(${openjdk[@]})
 		img="${oj[0]}"
@@ -25,7 +25,7 @@ function openjdk_img(){
 	done
 }
 
-function adopt_img(){
+function adopt_imgs(){
 	for adopt in "${ADOPT_NONOFFICIAL[@]}"; do
 		a=(${adopt[@]})
 		img="${a[0]}"
@@ -46,8 +46,8 @@ if [[ $1 == 'jdk-list' ]]; then
 	echo "::set-output JDK_MATRIX=openjdk,adopt"
 elif [[ $1 == 'base-img' ]]; then
 	if [[ $2 == 'adopt' ]]; then
-		adopt_img
+		adopt_imgs
 	else
-		openjdk_img
+		openjdk_imgs
 	fi
 fi
