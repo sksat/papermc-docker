@@ -6,6 +6,18 @@ if [ $# -ne 0 ]; then
   SERVER="$1"
 fi
 
+if [ ! -e /tmp/healthcheck-start ]; then
+	date '+%s' > /tmp/healthcheck-start
+	exit 0
+else
+	start_time=$(cat /tmp/healthcheck-start)
+	now_time=$(date '+%s')
+	elapsed=$(expr $now_time - $start_time)
+	if [ $elapsed -lt 300 ]; then
+		exit 0
+	fi
+fi
+
 timeout 10 mc-monitor status --host ${SERVER} --port 25565
 STATUS=$?
 echo
