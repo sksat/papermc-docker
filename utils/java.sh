@@ -22,6 +22,12 @@ ADOPT_NONOFFICIAL_OPENJ9=(
   "adoptopenjdk/openjdk16-openj9:alpine-jre amd64"
 )
 
+# Eclipse temurin
+TEMURIN=(
+  "eclipse-temurin:16.0.2_7-jdk amd64"
+  "eclipse-temurin:16.0.2_7-jdk-focal amd64,arm64/v8"
+)
+
 function openjdk_imgs(){
 	for openjdk in "${OPENJDK[@]}"; do
 		oj=(${openjdk[@]})
@@ -60,6 +66,17 @@ function adopt_openj9_imgs(){
 	done
 }
 
+function temurin_imgs(){
+	for temurin in "${TEMURIN[@]}"; do
+		t=(${temurin[@]})
+		img="${t[0]}"
+		arch="${t[1]}"
+
+		tag=$(cut -d':' -f 2 <<<${img})
+		echo "\"$img\""
+	done
+}
+
 if [[ $1 == 'jdk-list' ]]; then
 	# JDK matrix for build jar
 	echo "::set-output JDK_MATRIX=openjdk,adopt"
@@ -68,12 +85,15 @@ elif [[ $1 == 'base-img' ]]; then
 		openjdk_imgs
 		adopt_imgs
 		adopt_openj9_imgs
+		temurin_imgs
 	fi
 
 	if [[ $2 == 'adopt' ]]; then
 		adopt_imgs
 	elif [[ $2 == 'adopt-openj9' ]]; then
 		adopt_openj9_imgs
+	elif [[ $2 == 'temurin' ]]; then
+		temurin_imgs
 	elif [[ $2 == 'openjdk' ]]; then
 		openjdk_imgs
 	fi
