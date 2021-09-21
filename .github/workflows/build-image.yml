@@ -219,7 +219,7 @@ jobs:
           buildkitd-flags: --debug
           driver-opts: image=moby/buildkit:v0.9.1
 
-      - name: Available platforms
+      - name: Show available platforms
         run: echo ${{ steps.buildx.outputs.platforms }}
 
       - name: Build and Push
