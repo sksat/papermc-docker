@@ -125,14 +125,19 @@ jobs:
         id: img-info
         shell: bash
         run: |
+          base=$(cut -d':' -f 1 <<<${{ matrix.base_img }})
+          tag=$(cut -d':' -f 2 <<<${{ matrix.base_img }})
+          echo "base: $base"
+          echo "tag: $tag"
+
           jdk="adopt"
-          if [[ ${{ matrix.base_img }} =~ "openjdk" ]]; then
-            jdk="openjdk"
-          elif [[ ${{ matrix.base_img }} =~ "adopt" ]]; then
-            jdk="adopt"
+          if [[ $base == 'adoptopenjdk/openjdk' ]]; then
+            jdk='adopt'
+          else
+            jdk="$base"
           fi
           echo "::set-output name=jdk::${jdk}"
-          echo "::set-output name=base::alpine"
+          echo "::set-output name=base::${tag}"
 
       - name: Set Tags
         id: tags
