@@ -9,6 +9,7 @@ fi
 
 if [ ! -e /tmp/healthcheck-start ]; then
 	date '+%s' > /tmp/healthcheck-start
+	exit 0
 else
 	start_time=$(cat /tmp/healthcheck-start)
 	now_time=$(date '+%s')
