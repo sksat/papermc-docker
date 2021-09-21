@@ -15,6 +15,7 @@ mkdir -p data
 echo "eula=true" > data/eula.txt
 
 echo "image tag: ${IMG_TAG}"
+echo "start container at $(date)"
 env IMG_TAG="${IMG_TAG}" docker-compose up -d
 sleep 5
 docker-compose ps
