@@ -131,7 +131,7 @@ jobs:
           echo "tag: $tag"
 
           jdk="adopt"
-          if [[ $base == 'adoptopenjdk/openjdk' ]]; then
+          if [[ $base =~ 'adoptopenjdk/openjdk' ]]; then
             jdk='adopt'
           else
             jdk="$base"
