@@ -4,7 +4,7 @@ cd `dirname $0`
 source ../.env
 
 DEFAULT_BRANCH='main'
-DEFAULT_JDK='adoptopenjdk'
+DEFAULT_JDK='adopt'
 DEFAULT_BASE_IMG='alpine'
 
 #JDK=openjdk
@@ -91,17 +91,17 @@ function gen_default(){
 
 	# default branch
 	if [[ $(git symbolic-ref --short HEAD) == "$DEFAULT_BRANCH" ]]; then
-		tags=$(echo $tags | sed -e "s/${DEFAULT_BRANCH}//g")
+		tags="$tags $(echo $tags | sed -e "s/${DEFAULT_BRANCH}//g")"
 	fi
 
 	# default JDK
 	if [[ $JDK == "$DEFAULT_JDK" ]]; then
-		tags=$(echo $tags | sed -e "s/${DEFAULT_JDK}//g")
+		tags="$tags $(echo $tags | sed -e "s/${DEFAULT_JDK}//g")"
 	fi
 
 	# default base image
 	if [[ $BASE_IMG == "$DEFAULT_BASE_IMG" ]]; then
-		tags=$(echo $tags | sed -e "s/${DEFAULT_BASE_IMG}//g")
+		tags="$tags $(echo $tags | sed -e "s/${DEFAULT_BASE_IMG}//g")"
 	fi
 
 	# Fix empty & output
@@ -125,13 +125,8 @@ function main(){
 	done
 	tags="$tags_tmp"
 
-	# generate default version tags
+	# generate default version tags & output
 	gen_default "$tags"
-
-	# print tags
-	for t in $tags; do
-		echo $t
-	done
 }
 
 if [ $# -eq 1 ]; then

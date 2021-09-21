@@ -11,6 +11,7 @@ on:
       - '.dockerignore'
       - '.env'
       - '.github/workflows/build-image.yml'
+      - 'utils/java.sh'
       - 'utils/set-tags.sh'
       - 'test/startup.sh'
       - 'test/docker-compose.yml'
@@ -66,12 +67,30 @@ jobs:
           ls
           bash ./build.sh
 
+  base_img_matrix:
+    name: Generate Base Image matrix
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set Base Image matrix
+        id: set-matrix
+        run: |
+          imgs=$(./utils/java.sh base-img | tr '\n' ' ')
+          imgs=$(echo "${imgs}" | sed -e 's/ /, /g')
+          echo -n '::set-output name=matrix::[' \
+          && echo -n ${imgs} \
+          && echo ']'
+
   build_image:
-    needs: build_jar
+    needs: [build_jar, base_img_matrix]
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        jdk: ["openjdk", "adoptopenjdk"]
+        base_img: ${{ fromJSON(needs.base_img_matrix.outputs.matrix) }}
 
     steps:
       - uses: actions/checkout@v2
@@ -103,11 +122,32 @@ jobs:
         with:
           images: ghcr.io/${{ github.repository }},sksat/${{ github.event.repository.name }}
 
+      - name: Get base-image info
+        id: img-info
+        shell: bash
+        run: |
+          base=$(cut -d':' -f 1 <<<${{ matrix.base_img }})
+          tag=$(cut -d':' -f 2 <<<${{ matrix.base_img }})
+          echo "base: $base"
+          echo "tag: $tag"
+
+          jdk="adopt"
+          if [[ $base =~ 'adoptopenjdk/openjdk' ]]; then
+            jdk='adopt'
+          else
+            jdk="$base"
+          fi
+
+          echo "jdk=${jdk}, base=${tag}"
+          echo "::set-output name=jdk::${jdk}"
+          echo "::set-output name=base::${tag}"
+
       - name: Set Tags
         id: tags
         shell: bash
         env:
-          JDK: ${{ matrix.jdk }}
+          JDK: ${{ steps.img-info.outputs.jdk }}
+          BASE_IMG: ${{ steps.img-info.outputs.base }}
         run: |
           tags=$(cat << EOS | ./utils/set-tags.sh
           ${{ steps.meta.outputs.tags }}
@@ -118,16 +158,6 @@ jobs:
           tags="${tags//$'\n'/'%0A'}"
           tags="${tags//$'\r'/'%0D'}"
           echo "::set-output name=tags::${tags}"
-
-      - name: Set base image
-        id: set_base
-        shell: bash
-        run: |
-          if [[ ${{ matrix.jdk }} == 'openjdk' ]]; then
-            echo "::set-output name=base_img::openjdk:16.0.2-slim-buster"
-          elif [[ ${{ matrix.jdk }} == 'adoptopenjdk' ]]; then
-            echo "::set-output name=base_img::adoptopenjdk/openjdk16:alpine-jre"
-          fi
 
       - name: Login to ghcr.io
         if: ${{ github.event_name }} != 'pull_request'
@@ -155,7 +185,7 @@ jobs:
             "MINECRAFT_VERSION=${{ needs.build_jar.outputs.MINECRAFT_VERSION }}"
             "PAPER_VERSION=${{ needs.build_jar.outputs.PAPER_VERSION }}"
             "PAPER_COMMIT=${{ needs.build_jar.outputs.PAPER_COMMIT }}"
-            "BASE_IMG=${{ steps.set_base.outputs.base_img }}"
+            "BASE_IMG=${{ matrix.base_img }}"
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.tags.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
@@ -175,7 +205,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        jdk: ["openjdk", "adoptopenjdk"]
+        jdk: ["openjdk", "adopt"]
 
     steps:
       - uses: actions/checkout@v2
