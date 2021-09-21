@@ -136,6 +136,8 @@ jobs:
           else
             jdk="$base"
           fi
+
+          echo "jdk=${jdk}, base=${tag}"
           echo "::set-output name=jdk::${jdk}"
           echo "::set-output name=base::${tag}"
 
