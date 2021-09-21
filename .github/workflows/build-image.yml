@@ -36,28 +36,31 @@ jobs:
           echo "::set-output name=PAPER_VERSION::${PAPER_VERSION}"
           echo "::set-output name=PAPER_COMMIT::${PAPER_COMMIT}"
 
+      - name: cache paperclip
+        id: cache-paperclip
+        uses: actions/cache@v2
+        with:
+          path: Paper/paperclip-${{ steps.paper-commit.outputs.PAPER_COMMIT }}.jar
+          key: paperclip-${{ runner.os }}-${{ steps.paper-commit.outputs.PAPER_COMMIT }}
+
       - name: clone Paper
+        if: steps.cache-paperclip.outputs.cache-hit != 'true'
         uses: actions/checkout@v2
         with:
           repository: PaperMC/Paper
           path: Paper
           ref: ${{ steps.paper-commit.outputs.PAPER_COMMIT }}
 
-      - name: setup JAVA
+      - name: setup Java
+        if: steps.cache-paperclip.outputs.cache-hit != 'true'
         uses: actions/setup-java@v2.3.0
         with:
           distribution: 'adopt-openj9'
           java-version: '16.0.2'
           cache: 'gradle'
 
-      - name: cache paperclip
-        id: cache-paperclip
-        uses: actions/cache@v2
-        with:
-          path: Paper/paperclip.jar
-          key: paperclip-${{ runner.os }}-${{ steps.paper-commit.outputs.PAPER_COMMIT }}
-
       - name: Build jar
+        if: steps.cache-paperclip.outputs.cache-hit != 'true'
         run: |
           ls
           bash ./build.sh
