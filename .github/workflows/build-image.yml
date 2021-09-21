@@ -44,7 +44,7 @@ jobs:
           key: paperclip-${{ runner.os }}-${{ steps.paper-commit.outputs.PAPER_COMMIT }}
 
       - name: setup Java
-        if: steps.cache-paperclip.outputs.cache-hit != 'true'
+        if: steps.cache-paperclip.outputs.cache-hit != 'false'
         uses: actions/setup-java@v2.3.0
         with:
           distribution: 'adopt-openj9'
@@ -52,7 +52,7 @@ jobs:
           cache: 'gradle'
 
       - name: clone Paper
-        if: steps.cache-paperclip.outputs.cache-hit != 'true'
+        if: steps.cache-paperclip.outputs.cache-hit != 'false'
         uses: actions/checkout@v2
         with:
           repository: PaperMC/Paper
@@ -60,7 +60,7 @@ jobs:
           ref: ${{ steps.paper-commit.outputs.PAPER_COMMIT }}
 
       - name: Build jar
-        if: steps.cache-paperclip.outputs.cache-hit != 'true'
+        if: steps.cache-paperclip.outputs.cache-hit != 'false'
         run: |
           ls
           bash ./build.sh
