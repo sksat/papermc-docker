@@ -71,7 +71,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        jdk: ["openjdk", "adoptopenjdk"]
+        jdk: ["openjdk", "adopt"]
 
     steps:
       - uses: actions/checkout@v2
@@ -125,7 +125,7 @@ jobs:
         run: |
           if [[ ${{ matrix.jdk }} == 'openjdk' ]]; then
             echo "::set-output name=base_img::openjdk:16.0.2-slim-buster"
-          elif [[ ${{ matrix.jdk }} == 'adoptopenjdk' ]]; then
+          elif [[ ${{ matrix.jdk }} == 'adopt' ]]; then
             echo "::set-output name=base_img::adoptopenjdk/openjdk16:alpine-jre"
           fi
 

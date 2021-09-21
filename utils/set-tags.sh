@@ -4,7 +4,7 @@ cd `dirname $0`
 source ../.env
 
 DEFAULT_BRANCH='main'
-DEFAULT_JDK='adoptopenjdk'
+DEFAULT_JDK='adopt'
 DEFAULT_BASE_IMG='alpine'
 
 #JDK=openjdk
