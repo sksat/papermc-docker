@@ -202,7 +202,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        jdk: ["openjdk", "adoptopenjdk"]
+        jdk: ["openjdk", "adopt"]
 
     steps:
       - uses: actions/checkout@v2
