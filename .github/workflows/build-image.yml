@@ -66,12 +66,28 @@ jobs:
           ls
           bash ./build.sh
 
+  base_img_matrix:
+    name: Generate Base Image matrix
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set Base Image matrix
+        id: set-matrix
+        run: |
+          echo -n '::set-output name=matrix::[' \
+          && ./utils/java.sh base-img adopt \
+          && echo ']'
+
   build_image:
-    needs: build_jar
+    needs: build_jar, base_img_matrix
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        jdk: ["openjdk", "adopt"]
+        base_img: ${{ fromJSON(needs.base_img_matrix.outputs.matrix) }}
 
     steps:
       - uses: actions/checkout@v2
