@@ -11,6 +11,7 @@ on:
       - '.dockerignore'
       - '.env'
       - '.github/workflows/build-image.yml'
+      - 'utils/java.sh'
       - 'utils/set-tags.sh'
       - 'test/startup.sh'
       - 'test/docker-compose.yml'
