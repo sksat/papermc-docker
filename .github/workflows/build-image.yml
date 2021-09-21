@@ -43,19 +43,19 @@ jobs:
           path: Paper
           ref: ${{ steps.paper-commit.outputs.PAPER_COMMIT }}
 
-      - name: setup JAVA
-        uses: actions/setup-java@v2.3.0
-        with:
-          distribution: 'adopt-openj9'
-          java-version: '16.0.2'
-          cache: 'gradle'
-
       - name: cache paperclip
         id: cache-paperclip
         uses: actions/cache@v2
         with:
           path: Paper/paperclip.jar
           key: paperclip-${{ runner.os }}-${{ steps.paper-commit.outputs.PAPER_COMMIT }}
+
+      - name: setup JAVA
+        uses: actions/setup-java@v2.3.0
+        with:
+          distribution: 'adopt-openj9'
+          java-version: '16.0.2'
+          cache: 'gradle'
 
       - name: Build jar
         run: |
