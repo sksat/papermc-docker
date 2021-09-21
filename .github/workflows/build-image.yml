@@ -121,11 +121,19 @@ jobs:
         with:
           images: ghcr.io/${{ github.repository }},sksat/${{ github.event.repository.name }}
 
+      - name: Get base-image info
+        id: img-info
+        shell: bash
+        run: |
+          echo "::set-output name=jdk::openjdk"
+          echo "::set-output name=base::alpine"
+
       - name: Set Tags
         id: tags
         shell: bash
         env:
-          JDK: ${{ matrix.jdk }}
+          JDK: ${{ steps.img-info.output.jdk }}
+          BASE_IMG: ${{ steps.img-info.output.base }}
         run: |
           tags=$(cat << EOS | ./utils/set-tags.sh
           ${{ steps.meta.outputs.tags }}
