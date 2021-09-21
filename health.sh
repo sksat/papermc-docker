@@ -11,7 +11,8 @@ if [ ! -e /tmp/healthcheck-start ]; then
 	date '+%s' > /tmp/healthcheck-start
 else
 	start_time=$(cat /tmp/healthcheck-start)
-	elapsed=$(expr `date +%s` - $start_time)
+	now_time=$(date '+%s')
+	elapsed=$(expr $now_time - $start_time)
 	if [ $elapsed -lt 300 ]; then
 		exit 0
 	fi
