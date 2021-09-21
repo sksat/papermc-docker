@@ -34,7 +34,7 @@ do
 
 	PS=$(docker-compose ps -q)
 
-	if [[ -z $PS ]]; then
+	if [[ -z $(docker-compose ps -q) || $(docker-compose ps | grep 'Exit') ]]; then
 		echo "Error. Container is Dead, mismatch."
 		break
 	fi
