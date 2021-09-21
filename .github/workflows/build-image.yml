@@ -137,16 +137,6 @@ jobs:
           tags="${tags//$'\r'/'%0D'}"
           echo "::set-output name=tags::${tags}"
 
-      - name: Set base image
-        id: set_base
-        shell: bash
-        run: |
-          if [[ ${{ matrix.jdk }} == 'openjdk' ]]; then
-            echo "::set-output name=base_img::openjdk:16.0.2-slim-buster"
-          elif [[ ${{ matrix.jdk }} == 'adopt' ]]; then
-            echo "::set-output name=base_img::adoptopenjdk/openjdk16:alpine-jre"
-          fi
-
       - name: Login to ghcr.io
         if: ${{ github.event_name }} != 'pull_request'
         uses: docker/login-action@v1
