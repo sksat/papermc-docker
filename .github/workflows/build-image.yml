@@ -51,6 +51,7 @@ jobs:
           key: paperclip-${{ runner.os }}-${{ steps.paper-commit.outputs.PAPER_COMMIT }}
 
       - name: setup JAVA
+        if: steps.cache-paperclip.outputs.cache-hit != 'true'
         uses: actions/setup-java@v2.3.0
         with:
           distribution: 'adopt-openj9'
@@ -58,6 +59,7 @@ jobs:
           cache: 'gradle'
 
       - name: Build jar
+        if: steps.cache-paperclip.outputs.cache-hit != 'true'
         run: |
           ls
           bash ./build.sh
