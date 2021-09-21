@@ -2,7 +2,9 @@
 
 # Official OpenJDK images
 OPENJDK=(
-  "openjdk:16-slim amd64"
+  "openjdk:16-slim amd64,arm64/v8"
+  "openjdk:16-slim-buster amd64,arm64/v8"
+  "openjdk:16-oraclelinux8 amd64,arm64/v8"
 )
 
 # Non-Official AdoptOpenJDK images(but AdoptOpenJDK maintained)
