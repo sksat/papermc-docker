@@ -102,8 +102,10 @@ jobs:
       - name: Set Tags
         id: tags
         shell: bash
+        env:
+          JDK: ${{ matrix.jdk }}
         run: |
-          tags=$(cat << EOS | JDK=${{ matrix.jdk }} ./utils/set-tags.sh
+          tags=$(cat << EOS | ./utils/set-tags.sh
           ${{ steps.meta.outputs.tags }}
           EOS
           )
