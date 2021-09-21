@@ -45,7 +45,6 @@ jobs:
           key: paperclip-${{ runner.os }}-${{ steps.paper-commit.outputs.PAPER_COMMIT }}
 
       - name: clone Paper
-        if: steps.cache-paperclip.outputs.cache-hit != 'true'
         uses: actions/checkout@v2
         with:
           repository: PaperMC/Paper
