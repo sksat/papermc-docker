@@ -13,7 +13,7 @@ RUN cp ./mc-monitor/mc-monitor /bin/
 #FROM openjdk:16.0.2-slim-buster
 FROM ${BASE_IMG}
 WORKDIR /app
-COPY Paper/paperclip-${PAPER_COMMIT}.jar /bin/paperclip.jar
+COPY Paper/paperclip.jar /bin/
 COPY Paper/LICENSE.md /licenses/Paper/
 COPY Paper/licenses /licenses/Paper/licenses
 #RUN ls /licenses/Paper/licenses
