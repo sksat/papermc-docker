@@ -1,3 +1,7 @@
 .git/
-Paper/
 data/
+
+Paper/*
+!Paper/paperclip*.jar
+!Paper/LICENSE.md
+!Paper/licenses/
