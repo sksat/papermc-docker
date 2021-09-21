@@ -31,6 +31,14 @@ SECONDS=0
 while true
 do
 	sleep 1
+
+	PS=$(docker-compose ps -q)
+
+	if [[ -z $PS ]]; then
+		echo "Error. Container is Dead, mismatch."
+		break
+	fi
+
 	MCSTATUS_JSON=$(mcstatus localhost json)
 	MCSTATUS_ONLINE=$(echo ${MCSTATUS_JSON} | jq .online)
 	if [ "${MCSTATUS_ONLINE}" == 'true' ]; then
