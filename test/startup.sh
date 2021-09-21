@@ -54,7 +54,7 @@ done
 docker-compose ps
 docker-compose logs -t
 
-echo "${MCSTATUS_JSON}"
+echo "${MCSTATUS_JSON}" | jq
 MCSTATUS_VERSION=$(echo ${MCSTATUS_JSON} | jq .version)
 
 if [ "${MCSTATUS_ONLINE}" != 'true' ]; then
