@@ -1,4 +1,6 @@
-FROM openjdk:16.0.2-jdk-slim as builder
+ARG BASE_IMG="adoptopenjdk/openjdk16:alpine-jre"
+
+FROM alpine as builder
 LABEL maintainer "sksat <sksat@sksat.net>"
 
 FROM alpine as mc-monitor
@@ -7,7 +9,9 @@ RUN ./download-mc-monitor.sh
 RUN cp ./mc-monitor/mc-monitor /bin/
 
 # Run
-FROM adoptopenjdk/openjdk16:alpine-jre
+#FROM adoptopenjdk/openjdk16:alpine-jre
+#FROM openjdk:16.0.2-slim-buster
+FROM ${BASE_IMG}
 WORKDIR /app
 COPY Paper/paperclip.jar /bin/
 COPY Paper/LICENSE.md /licenses/Paper/
