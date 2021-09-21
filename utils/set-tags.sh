@@ -44,8 +44,10 @@ function fix_empty(){
 		tag="${tag/%?/}"
 	fi
 
-	#echo "fixed    : $tag" 1>&2
-	echo "$tag"
+	# ignore all empty
+	if [[ ${tag: -1} != ':' ]]; then
+		echo "$tag"
+	fi
 }
 
 function add_all(){
