@@ -113,7 +113,7 @@ jobs:
         id: restore-paperclip
         uses: actions/cache@v2
         with:
-          path: Paper/paperclip-hoge.jar
+          path: Paper/paperclip.jar
           key: paperclip-${{ runner.os }}-${{ needs.build_jar.outputs.PAPER_COMMIT }}
 
       - name: download paperclip.jar from artifact
