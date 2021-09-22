@@ -5,7 +5,12 @@ source ../.env
 
 DEFAULT_BRANCH='main'
 DEFAULT_JDK='adopt'
-DEFAULT_BASE_IMG='alpine'
+
+if [[ "$JDK" == 'adopt' ]]; then
+	DEFAULT_BASE_IMG='alpine'
+elif [[ "$JDK" == 'openjdk' ]]; then
+	DEFAULT_BASE_IMG='16-slim'  # そうか？
+fi
 
 #JDK=openjdk
 #BASE_IMG=alpine
