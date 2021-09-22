@@ -67,6 +67,13 @@ jobs:
           ls
           bash ./build.sh
 
+      - name: Upload paperclip.jar as artifact
+        if: steps.cache-paperclip.outputs.cache-hit != 'true'
+        uses: actions/upload-artifact@v2
+        with:
+          name: paperclip-${{ steps.paper-commit.outputs.PAPER_COMMIT }}
+          path: Paper/paperclip-${{ steps.paper-commit.outputs.PAPER_COMMIT }}.jar
+
   base_img_matrix:
     name: Generate Base Image matrix
     runs-on: ubuntu-latest
@@ -103,10 +110,18 @@ jobs:
           ref: ${{ needs.build_jar.outputs.PAPER_COMMIT }}
 
       - name: restore paperclip cache
+        id: restore-paperclip
         uses: actions/cache@v2
         with:
           path: Paper/paperclip-hoge.jar
           key: paperclip-${{ runner.os }}-${{ needs.build_jar.outputs.PAPER_COMMIT }}
+
+      - name: download paperclip.jar from artifact
+        if: steps.restore-paperclip.outputs.cache-hit != 'true'
+        uses: actions/download-artifact@v2
+        with:
+          name: paperclip-${{ steps.paper-commit.outputs.PAPER_COMMIT }}
+          path: Paper/paperclip.jar
 
       - name: jar exist check
         run: |
