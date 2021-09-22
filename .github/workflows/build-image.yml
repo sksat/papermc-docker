@@ -105,7 +105,7 @@ jobs:
       - name: restore paperclip cache
         uses: actions/cache@v2
         with:
-          path: Paper/paperclip.jar
+          path: Paper/paperclip-hoge.jar
           key: paperclip-${{ runner.os }}-${{ needs.build_jar.outputs.PAPER_COMMIT }}
 
       - name: jar exist check
