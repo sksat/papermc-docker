@@ -118,7 +118,7 @@ jobs:
 
       - name: Docker meta
         id: meta
-        uses: crazy-max/ghaction-docker-meta@v3
+        uses: docker/metadata-action@v3.5.0
         with:
           images: ghcr.io/${{ github.repository }},sksat/${{ github.event.repository.name }}
 
