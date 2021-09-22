@@ -12,7 +12,7 @@ DEFAULT_BASE_IMG='alpine'
 
 function add_mc(){
 	local commit_short
-	commit_short=$(git --short rev-parse ${PAPER_COMMIT})
+	commit_short=$(git rev-parse --short ${PAPER_COMMIT})
 
 	echo "$1"
 	echo "$1-${MINECRAFT_VERSION}"
