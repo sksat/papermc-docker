@@ -38,13 +38,6 @@ jobs:
           echo "::set-output name=PAPER_VERSION::${PAPER_VERSION}"
           echo "::set-output name=PAPER_COMMIT::${PAPER_COMMIT}"
 
-      - name: cache paperclip
-        id: cache-paperclip
-        uses: actions/cache@v2
-        with:
-          path: Paper/paperclip-${{ steps.paper-commit.outputs.PAPER_COMMIT }}.jar
-          key: paperclip-${{ runner.os }}-${{ steps.paper-commit.outputs.PAPER_COMMIT }}
-
       - name: clone Paper
         if: steps.cache-paperclip.outputs.cache-hit != 'true'
         uses: actions/checkout@v2
@@ -108,13 +101,6 @@ jobs:
           repository: PaperMC/Paper
           path: Paper
           ref: ${{ needs.build_jar.outputs.PAPER_COMMIT }}
-
-      - name: restore paperclip cache
-        id: restore-paperclip
-        uses: actions/cache@v2
-        with:
-          path: Paper/paperclip.jar
-          key: paperclip-${{ runner.os }}-${{ needs.build_jar.outputs.PAPER_COMMIT }}
 
       - name: download paperclip.jar from artifact
         if: steps.restore-paperclip.outputs.cache-hit != 'true'
