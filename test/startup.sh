@@ -8,6 +8,8 @@ if [ $# -eq 1 ]; then
 	IMG_TAG=$(echo "$1" | sed 's/\//-/')
 fi
 
+echo "image tag: ${IMG_TAG}"
+
 # image pull test
 docker pull "sksat/papermc-docker:${IMG_TAG}"
 
