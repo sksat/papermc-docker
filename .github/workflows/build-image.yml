@@ -109,7 +109,10 @@ jobs:
           key: paperclip-${{ runner.os }}-${{ needs.build_jar.outputs.PAPER_COMMIT }}
 
       - name: jar exist check
-        run: ls -lh Paper/paperclip.jar
+        run: |
+          ls
+          ls Paper
+          ls -lh Paper/paperclip.jar
 
       - name: Cache Docker Layers
         uses: actions/cache@v2
