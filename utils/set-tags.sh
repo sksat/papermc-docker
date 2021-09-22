@@ -11,10 +11,13 @@ DEFAULT_BASE_IMG='alpine'
 #BASE_IMG=alpine
 
 function add_mc(){
+	local commit_short
+	commit_short=$(git rev-parse ${PAPER_COMMIT})
+
 	echo "$1"
 	echo "$1-${MINECRAFT_VERSION}"
 	echo "$1-${PAPER_VERSION}"
-	echo "$1-${PAPER_VERSION}-${PAPER_COMMIT}"
+	echo "$1-${PAPER_VERSION}-${commit_short}"
 }
 
 function add_jdk(){
