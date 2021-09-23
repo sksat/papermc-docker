@@ -136,6 +136,8 @@ jobs:
           if [ -d Paper/paperclip.jar ]; then
             echo "Oh shit! This paperclip.jar is directory!"
             exit 1
+          elif [ $( file Paper/paperclip.jar | grep 'Zip archive data' ) ]; then
+            echo "Oh shit! This paperclip.jar is Zip file!!!"
           fi
 
       - name: Cache Docker Layers
