@@ -121,12 +121,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: paperclip-${{ needs.build_jar.outputs.PAPER_COMMIT }}
-          path: paperclip-artifact
-
-      - name: Rename downloaded artifact to Paper/paperclip.jar
-        if: steps.restore-paperclip.outputs.cache-hit != 'false'
-        run: |
-          mv paperclip-artifact/paperclip-${{ needs.build_jar.outputs.PAPER_COMMIT }} Paper/paperclip.jar
+          path: Paper/paperclip.jar
 
       - name: jar exist check
         run: |
