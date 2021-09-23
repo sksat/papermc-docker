@@ -66,11 +66,14 @@ jobs:
         run: |
           ls
           bash ./build.sh
+          ls -lh Paper/paperclip-${{ steps.paper-commit.outputs.PAPER_COMMIT }}.jar
+          file Paper/paperclip-${{ steps.paper-commit.outputs.PAPER_COMMIT }}.jar
 
       - name: Upload paperclip.jar as artifact
         if: steps.cache-paperclip.outputs.cache-hit != 'false'
         uses: actions/upload-artifact@v2
         with:
+          if-no-files-found: error
           name: paperclip-${{ steps.paper-commit.outputs.PAPER_COMMIT }}
           path: Paper/paperclip-${{ steps.paper-commit.outputs.PAPER_COMMIT }}.jar
 
@@ -121,13 +124,22 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: paperclip-${{ needs.build_jar.outputs.PAPER_COMMIT }}
-          path: Paper/paperclip.jar
+          path: paperclip-artifact
+
+      - name: Rename downloaded artifact to Paper/paperclip.jar
+        if: steps.restore-paperclip.outputs.cache-hit != 'false'
+        run: |
+          mv "paperclip-artifact/paperclip-${{ needs.build_jar.outputs.PAPER_COMMIT }}.jar" Paper/paperclip.jar
 
       - name: jar exist check
         run: |
-          ls
           ls Paper
           ls -lh Paper/paperclip.jar
+          file Paper/paperclip.jar
+          if [ -d Paper/paperclip.jar ]; then
+            echo "Oh shit! This paperclip.jar is directory!"
+            exit 1
+          fi
 
       - name: Cache Docker Layers
         uses: actions/cache@v2
