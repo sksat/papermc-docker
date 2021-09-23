@@ -129,7 +129,7 @@ jobs:
       - name: Rename downloaded artifact to Paper/paperclip.jar
         if: steps.restore-paperclip.outputs.cache-hit != 'false'
         run: |
-          mv paperclip-artifact/paperclip-${{ needs.build_jar.outputs.PAPER_COMMIT }}.jar Paper/paperclip.jar
+          mv "paperclip-artifact/paperclip-${{ needs.build_jar.outputs.PAPER_COMMIT }}.jar" Paper/paperclip.jar
 
       - name: jar exist check
         run: |
@@ -139,7 +139,7 @@ jobs:
           if [ -d Paper/paperclip.jar ]; then
             echo "Oh shit! This paperclip.jar is directory!"
             exit 1
-          elif file Paper/paperclip.jar | grep 'Zip archive data'; then
+          elif file Paper/paperclip.jar | grep -q 'Zip archive data'; then
             echo "Oh shit! This paperclip.jar is Zip file!!!"
           fi
 
