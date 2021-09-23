@@ -133,6 +133,10 @@ jobs:
           ls Paper
           ls -lh Paper/paperclip.jar
           file Paper/paperclip.jar
+          if [ -d Paper/paperclip.jar ]; then
+            echo "Oh shit! This paperclip.jar is directory!"
+            exit 1
+          fi
 
       - name: Cache Docker Layers
         uses: actions/cache@v2
