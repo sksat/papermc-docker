@@ -125,7 +125,6 @@ jobs:
 
       - name: jar exist check
         run: |
-          ls
           ls Paper
           ls -lh Paper/paperclip.jar
 
