@@ -127,6 +127,7 @@ jobs:
         run: |
           ls Paper
           ls -lh Paper/paperclip.jar
+          file Paper/paperclip.jar
 
       - name: Cache Docker Layers
         uses: actions/cache@v2
