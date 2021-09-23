@@ -13,7 +13,7 @@ else
 	start_time=$(cat /tmp/healthcheck-start)
 	now_time=$(date '+%s')
 	elapsed=$(expr $now_time - $start_time)
-	if [ $elapsed -lt 300 ]; then
+	if [ $elapsed -lt 600 ]; then
 		exit 0
 	fi
 fi
