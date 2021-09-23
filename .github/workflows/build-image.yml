@@ -66,11 +66,14 @@ jobs:
         run: |
           ls
           bash ./build.sh
+          ls -lh Paper/paperclip-${{ steps.paper-commit.outputs.PAPER_COMMIT }}.jar
+          file Paper/paperclip-${{ steps.paper-commit.outputs.PAPER_COMMIT }}.jar
 
       - name: Upload paperclip.jar as artifact
         if: steps.cache-paperclip.outputs.cache-hit != 'false'
         uses: actions/upload-artifact@v2
         with:
+          if-no-files-found: error
           name: paperclip-${{ steps.paper-commit.outputs.PAPER_COMMIT }}
           path: Paper/paperclip-${{ steps.paper-commit.outputs.PAPER_COMMIT }}.jar
 
