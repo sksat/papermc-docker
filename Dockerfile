@@ -24,4 +24,4 @@ COPY health.sh /bin/
 COPY entrypoint.sh /bin/
 
 ENTRYPOINT ["/bin/entrypoint.sh"]
-HEALTHCHECK --start-period=5m --interval=20s --timeout=1m --retries=5 CMD /bin/health.sh
+HEALTHCHECK --start-period=10m --interval=20s --timeout=1m --retries=5 CMD /bin/health.sh
