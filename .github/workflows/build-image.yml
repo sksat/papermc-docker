@@ -160,9 +160,12 @@ jobs:
         shell: bash
         run: |
           base=$(cut -d':' -f 1 <<<${{ matrix.base_img }})
-          tag=$(cut -d':' -f 2 <<<${{ matrix.base_img }})
+          tag_digest=$(cut -d':' -f 2 <<<${{ matrix.base_img }})
+          tag=$(cut -d'@' -f 1 <<<${tag_digest})
+          digest=$(cut -d'@' -f 2 <<<${tag_digest})
           echo "base: $base"
           echo "tag: $tag"
+          echo "digest: $digest"
 
           jdk="adopt"
           if [[ $base =~ 'adoptopenjdk/openjdk' ]]; then
