@@ -46,7 +46,7 @@ jobs:
           key: paperclip-${{ runner.os }}-${{ steps.paper-commit.outputs.PAPER_COMMIT }}
 
       - name: clone Paper
-        if: steps.cache-paperclip.outputs.cache-hit != 'false'
+        if: steps.cache-paperclip.outputs.cache-hit != 'true'
         uses: actions/checkout@v2
         with:
           repository: PaperMC/Paper
@@ -54,7 +54,7 @@ jobs:
           ref: ${{ steps.paper-commit.outputs.PAPER_COMMIT }}
 
       - name: setup Java
-        if: steps.cache-paperclip.outputs.cache-hit != 'false'
+        if: steps.cache-paperclip.outputs.cache-hit != 'true'
         uses: actions/setup-java@v2.3.1
         with:
           distribution: 'adopt-openj9'
@@ -62,7 +62,7 @@ jobs:
           cache: 'gradle'
 
       - name: Build jar
-        if: steps.cache-paperclip.outputs.cache-hit != 'false'
+        if: steps.cache-paperclip.outputs.cache-hit != 'true'
         run: |
           ls
           bash ./utils/build-paper.sh
@@ -70,7 +70,7 @@ jobs:
           file Paper/paperclip-${{ steps.paper-commit.outputs.PAPER_COMMIT }}.jar
 
       - name: Upload paperclip.jar as artifact
-        if: steps.cache-paperclip.outputs.cache-hit != 'false'
+        if: steps.cache-paperclip.outputs.cache-hit != 'true'
         uses: actions/upload-artifact@v2
         with:
           if-no-files-found: error
@@ -120,11 +120,11 @@ jobs:
         id: restore-paperclip
         uses: actions/cache@v2
         with:
-          path: Paper/paperclip-cached.jar
+          path: Paper/paperclip.jar
           key: paperclip-${{ runner.os }}-${{ needs.build_jar.outputs.PAPER_COMMIT }}
 
       - name: download paperclip.jar from artifact
-        if: steps.restore-paperclip.outputs.cache-hit != 'false'
+        if: steps.restore-paperclip.outputs.cache-hit != 'true'
         uses: actions/download-artifact@v2
         with:
           name: paperclip-${{ needs.build_jar.outputs.PAPER_COMMIT }}
