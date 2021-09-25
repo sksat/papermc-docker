@@ -12,23 +12,24 @@ OPENJDK=(
 
 # Non-Official AdoptOpenJDK images(but AdoptOpenJDK maintained)
 ADOPT_NONOFFICIAL=(
-  "adoptopenjdk/openjdk16:alpine amd64"
-  "adoptopenjdk/openjdk16:alpine-slim amd64"
-  "adoptopenjdk/openjdk16:alpine-jre amd64"
+  "adoptopenjdk/openjdk16:alpine amd64      sha256:4c68697011ebfa6f2534c3296386b81b9c49ae3197a33546326a40963811935f"
+  "adoptopenjdk/openjdk16:alpine-slim amd64 sha256:96ca2cd0ca4b572dea5efc6c8af6b7354caad941ef7a953b691c7894919393e5"
+  "adoptopenjdk/openjdk16:alpine-jre amd64  sha256:55a5fd6d8b6ef9a97a07ffeda2b5e8fbbe462a236b2c76ac04ae8637bc8a6392"
   #"adoptopenjdk/openjdk16:aarch64-debianslim-jre-16.0.1_9 aarch64"
   #"adoptopenjdk/openjdk16:armv7l-debianslim-jre-16.0.1_9 arm/v7"
 )
 # Non-Official AdoptOpenJDK OpenJ9 images(but AdoptOpenJDK maintained)
 ADOPT_NONOFFICIAL_OPENJ9=(
-  "adoptopenjdk/openjdk16-openj9:alpine amd64"
-  "adoptopenjdk/openjdk16-openj9:alpine-slim amd64"
-  "adoptopenjdk/openjdk16-openj9:alpine-jre amd64"
+  "adoptopenjdk/openjdk16-openj9:alpine amd64      sha256:7da4de3b8bc632c16ed5b4b533943a34438ac23260ae71770035ce3ba88de3e2"
+  "adoptopenjdk/openjdk16-openj9:alpine-slim amd64 sha256:e99a6f03c3f418eb34b982fbb5294549ff6c2981bded54eab053cf9f5431c2b6"
+  "adoptopenjdk/openjdk16-openj9:alpine-jre amd64  sha256:34b080fc64a346f7e4d8b7985dcac88400f3c07d2e4ff3d57d6fa0e117a92657"
 )
 
 # Eclipse temurin
 TEMURIN=(
-  "eclipse-temurin:16.0.2_7-jdk amd64"
-  "eclipse-temurin:16.0.2_7-jdk-focal amd64,arm64/v8"
+  "eclipse-temurin:16.0.2_7-jdk amd64          sha256:0274429ef583aebf510c77fe48186f2fdfeaae1bf5496797924f46d2bb974cb5"
+  "eclipse-temurin:16.0.2_7-jdk-focal amd64    sha256:0274429ef583aebf510c77fe48186f2fdfeaae1bf5496797924f46d2bb974cb5"
+  #"eclipse-temurin:16.0.2_7-jdk-focal arm64/v8"
 )
 
 function openjdk_imgs(){
