@@ -16,6 +16,12 @@
       "datasourceTemplate": "git-refs"
     },
     {
+      "fileMatch": ["utils/java.sh"],
+      "matchStrings": ["  \"(?<depName>.*?):(?<tag>.*?) (?<arch>(amd64|arm64\/v.))( )+sha256:(?<currentValue>.*?)\""],
+      "versioningTemplate": "docker",
+      "datasourceTemplate": "docker"
+    },
+    {
       "fileMatch": ["utils/download-mc-monitor.sh"],
       "matchStrings": [
         "datasource=(?<datasource>.*?) depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\n.*?_VERSION=\"(?<currentValue>.*)\"\n"
