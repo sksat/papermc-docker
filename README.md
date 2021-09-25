@@ -1,14 +1,54 @@
 # papermc-docker
 [![Build Container Image](https://github.com/sksat/papermc-docker/actions/workflows/build-image.yml/badge.svg)](https://github.com/sksat/papermc-docker/actions/workflows/build-image.yml)
 [![image version](https://img.shields.io/docker/v/sksat/papermc-docker?sort=semver)](https://hub.docker.com/r/sksat/papermc-docker)
-[![image size](https://img.shields.io/docker/image-size/sksat/papermc-docker/main)](https://hub.docker.com/r/sksat/papermc-docker)
 [![image pulls](https://img.shields.io/docker/pulls/sksat/papermc-docker)](https://hub.docker.com/r/sksat/papermc-docker)
-[![auto update](https://github.com/sksat/papermc-docker/actions/workflows/auto-update.yml/badge.svg)](https://github.com/sksat/papermc-docker/actions/workflows/auto-update.yml)
 
-Docker container for PaperMC
+Docker container for [PaperMC](https://papermc.io/)
 
-- [GitHub Container Registry](https://github.com/sksat/papermc-docker/pkgs/container/papermc-docker)
-- [DockerHub](https://hub.docker.com/r/sksat/papermc-docker)
+## Image
+
+|Registry|Image|
+|-|-|
+|[DockerHub](https://hub.docker.com/r/sksat/papermc-docker)|`sksat/papermc-docker`|
+|[GitHub Container Registry](https://github.com/sksat/papermc-docker/pkgs/container/papermc-docker)|`ghcr.io/sksat/papermc-docker`|
+
+|tag|Image Size|
+|-|-|
+|`1.17.1`|![1.17.1](https://img.shields.io/docker/image-size/sksat/papermc-docker/1.17.1)|
+|`1.17.1-R0.1-SNAPSHOT`|![1.17.1-R0.1-SNAPSHOT](https://img.shields.io/docker/image-size/sksat/papermc-docker/1.17.1-R0.1-SNAPSHOT)|
+|`1.17.1-alpine`|![1.17.1-alpine](https://img.shields.io/docker/image-size/sksat/papermc-docker/1.17.1-alpine)|
+|`1.17.1-alpine-jre`|![1.17.1-alpine-jre](https://img.shields.io/docker/image-size/sksat/papermc-docker/1.17.1-alpine-jre)|
+|`1.17.1-alpine-slim`|![1.17.1-alpine-slim](https://img.shields.io/docker/image-size/sksat/papermc-docker/1.17.1-alpine-slim)|
+|`1.17.1-adopt`|![1.17.1-adopt](https://img.shields.io/docker/image-size/sksat/papermc-docker/1.17.1-adopt)|
+|`1.17.1-adopt-alpine`|![1.17.1-adopt-alpine](https://img.shields.io/docker/image-size/sksat/papermc-docker/1.17.1-adopt-alpine)|
+|`1.17.1-adopt-alpine-jre`|![1.17.1-adopt-alpine-jre](https://img.shields.io/docker/image-size/sksat/papermc-docker/1.17.1-adopt-alpine-jre)|
+|`1.17.1-adopt-alpine-slim`|![1.17.1-adopt-alpine-slim](https://img.shields.io/docker/image-size/sksat/papermc-docker/1.17.1-adopt-alpine-slim)|
+|`1.17.1-openjdk`|![1.17.1-openjdk](https://img.shields.io/docker/image-size/sksat/papermc-docker/1.17.1-openjdk)|
+|`1.17.1-openjdk-16-slim`|![1.17.1-openjdk-16-slim](https://img.shields.io/docker/image-size/sksat/papermc-docker/1.17.1-openjdk-16-slim)|
+|`1.17.1-openjdk-16-slim-buster`|![1.17.1-openjdk-16-slim-buster](https://img.shields.io/docker/image-size/sksat/papermc-docker/1.17.1-openjdk-16-slim-buster)|
+|`1.17.1-openjdk-16-oraclelinux8`|![1.17.1-openjdk-16-oraclelinux8](https://img.shields.io/docker/image-size/sksat/papermc-docker/1.17.1-openjdk-16-oraclelinux8)|
+|`1.17.1-eclipse-temurin-16.0.2_7-jdk`|![1.17.1-eclipse-temurin-16.0.2_7-jdk](https://img.shields.io/docker/image-size/sksat/papermc-docker/1.17.1-eclipse-temurin-16.0.2_7-jdk)|
+|`1.17.1-eclipse-temurin-16.0.2_7-jdk-focal`|![1.17.1-eclipse-temurin-16.0.2_7-jdk-focal](https://img.shields.io/docker/image-size/sksat/papermc-docker/1.17.1-eclipse-temurin-16.0.2_7-jdk-focal)|
+
+
+### Tags
+
+tag structure: `<branch>-<Minecraft version>-<JDK>-<base-img>`
+
+Some fields have default value.
+If the tag contains a default value, there are other versions of tags that do not include that field.
+
+Example: `main-1.17.1-R0.1-SNAPSHOT-d0a2193-alpine-jre` -> `1.17.1-alpine`
+
+- tag field
+
+|field|detail|default value|example|
+|-|-|-|-|
+|branch|branch name|`main`|`renovate/openjdk-16-slim`|
+|Minecraft version|Minecraft(PaperMC) version|N/A|`1.17.1`,`1.17.1-R0.1-SNAPSHOT`,`1.17.1-R0.1-SNAPSHOT-d0a2193`|
+|JDK|OpenJDK or AdoptOpenJDK/OpenJ9 or Eclipse temurin|`adopt`|`adopt-openj9`,`temurin`,`openjdk`|
+|base-img|Base Image|It depends on JDK. `adopt`->`alpine`, `openjdk`->`16-slim`|
+
 
 ## Deploy
 
