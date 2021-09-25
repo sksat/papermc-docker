@@ -4,10 +4,32 @@
 [![image size](https://img.shields.io/docker/image-size/sksat/papermc-docker/main)](https://hub.docker.com/r/sksat/papermc-docker)
 [![image pulls](https://img.shields.io/docker/pulls/sksat/papermc-docker)](https://hub.docker.com/r/sksat/papermc-docker)
 
-Docker container for PaperMC
+Docker container for [PaperMC](https://papermc.io/)
 
-- [GitHub Container Registry](https://github.com/sksat/papermc-docker/pkgs/container/papermc-docker)
-- [DockerHub](https://hub.docker.com/r/sksat/papermc-docker)
+## Image
+
+|Registry|Image|
+|-|-|
+|[DockerHub](https://hub.docker.com/r/sksat/papermc-docker)|`sksat/papermc-docker`|
+|[GitHub Container Registry](https://github.com/sksat/papermc-docker/pkgs/container/papermc-docker)|`ghcr.io/sksat/papermc-docker`|
+
+### Tags
+
+tag structure: `<branch>-<Minecraft version>-<JDK>-<base-img>`
+
+Some fields have default value.
+If the tag contains a default value, there are other versions of tags that do not include that field.
+
+Example: `main-1.17.1-R0.1-SNAPSHOT-d0a2193-alpine-jre`->`1.17.1-alpine`
+
+- tag field
+
+|field|detail|default value|example|
+|-|-|-|-|
+|branch|branch name|`main`|`renovate/openjdk-16-slim`|
+|Minecraft version|Minecraft(PaperMC) version|N/A|`1.17.1`,`1.17.1-R0.1-SNAPSHOT`,`1.17.1-R0.1-SNAPSHOT-d0a2193`|
+|JDK|OpenJDK or AdoptOpenJDK/OpenJ9 or Eclipse temurin|`adopt`|`adopt-openj9`,`temurin`,`openjdk`|
+|base-img|Base Image|It depends on JDK. `adopt`->`alpine`, `openjdk`->`16-slim`|
 
 ## Deploy
 
