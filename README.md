@@ -25,8 +25,8 @@ Docker container for [PaperMC](https://papermc.io/)
 |`1.17.1-adopt-alpine-jre`|![1.17.1-adopt-alpine-jre](https://img.shields.io/docker/image-size/sksat/papermc-docker/1.17.1-adopt-alpine-jre)|
 |`1.17.1-adopt-alpine-slim`|![1.17.1-adopt-alpine-slim](https://img.shields.io/docker/image-size/sksat/papermc-docker/1.17.1-adopt-alpine-slim)|
 |`1.17.1-openjdk`|![1.17.1-openjdk](https://img.shields.io/docker/image-size/sksat/papermc-docker/1.17.1-openjdk)|
-|`1.17.1-openjdk-16-slim`|![1.17.1-openjdk-slim](https://img.shields.io/docker/image-size/sksat/papermc-docker/1.17.1-openjdk-slim)|
-|`1.17.1-openjdk-16-slim-buster`|![1.17.1-openjdk-slim-buster](https://img.shields.io/docker/image-size/sksat/papermc-docker/1.17.1-openjdk-slim-buster)|
+|`1.17.1-openjdk-16-slim`|![1.17.1-openjdk-16-slim](https://img.shields.io/docker/image-size/sksat/papermc-docker/1.17.1-openjdk-16-slim)|
+|`1.17.1-openjdk-16-slim-buster`|![1.17.1-openjdk-16-slim-buster](https://img.shields.io/docker/image-size/sksat/papermc-docker/1.17.1-openjdk-16-slim-buster)|
 |`1.17.1-openjdk-16-oraclelinux8`|![1.17.1-openjdk-16-oraclelinux8](https://img.shields.io/docker/image-size/sksat/papermc-docker/1.17.1-openjdk-16-oraclelinux8)|
 |`1.17.1-eclipse-temurin-16.0.2_7-jdk`|![1.17.1-eclipse-temurin-16.0.2_7-jdk](https://img.shields.io/docker/image-size/sksat/papermc-docker/1.17.1-eclipse-temurin-16.0.2_7-jdk)|
 |`1.17.1-eclipse-temurin-16.0.2_7-jdk-focal`|![1.17.1-eclipse-temurin-16.0.2_7-jdk-focal](https://img.shields.io/docker/image-size/sksat/papermc-docker/1.17.1-eclipse-temurin-16.0.2_7-jdk-focal)|
