@@ -17,7 +17,7 @@
     },
     {
       "fileMatch": ["utils/java.sh"],
-      "matchStrings": ["  \"(?<depName>.*?) (?<arch>(amd64|arm64\/v.))( )+(?<currentValue>.*?)\""],
+      "matchStrings": ["  \"(?<depName>.*?):(?<currentValue>.*?) (?<arch>(amd64|arm64\/v.))( )+(?<currentDigest>sha256:[a-f0-9]+)\""],
       "versioningTemplate": "docker",
       "datasourceTemplate": "docker"
     },
