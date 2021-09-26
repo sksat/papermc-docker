@@ -7,7 +7,7 @@ DEFAULT_BRANCH='main'
 DEFAULT_JDK='adopt'
 
 if [[ "$JDK" == 'adopt' ]]; then
-	DEFAULT_BASE_IMG='alpine'
+	DEFAULT_BASE_IMG='alpine-jre'
 elif [[ "$JDK" == 'openjdk' ]]; then
 	DEFAULT_BASE_IMG='16-slim'  # そうか？
 fi
