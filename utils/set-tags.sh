@@ -123,18 +123,21 @@ function main(){
 	local tags
 	local tags_tmp
 
-	# get tags from stdin
-	tags=$(cat -)
+	# get image tags from stdin
+	base_imgs=$(cat -)
+	for img in $base_imgs; do
+		base=$(cut -d':' -f 1 <<<$img)
+		base_tag=$(cut -d':' -f 2 <<<$img)
+		#echo "base: $base, tag: $base_tag"
 
-	# generate all tags
-	tags_tmp=""
-	for t in $tags; do
-		tags_tmp="$tags_tmp $(add_all $t)"
+		# generate tags
+		tags=$(add_all "")
+		tags="$tags $(gen_default $tags)"
+
+		for t in $tags; do
+			echo "$base:$base_tag-$t"
+		done
 	done
-	tags="$tags_tmp"
-
-	# generate default version tags & output
-	gen_default "$tags"
 }
 
 if [ $# -eq 1 ]; then
