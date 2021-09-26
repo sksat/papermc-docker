@@ -253,4 +253,4 @@ jobs:
 
       - name: startup test
         run: |
-          ./test/startup.sh "${GITHUB_REF#refs/heads/}-${{ matrix.jdk }}"
+          ./test/startup.sh "${GITHUB_REF#refs/heads/}-${{ needs.build_jar.outputs.MINECRAFT_VERSION }}-${{ matrix.jdk }}"
