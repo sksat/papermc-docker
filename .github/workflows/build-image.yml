@@ -96,8 +96,12 @@ jobs:
           && echo ']'
 
   build_image:
-    needs: [build_jar, base_img_matrix]
     runs-on: ubuntu-latest
+    needs: [build_jar, base_img_matrix]
+    outputs:
+      MINECRAFT_VERSION: ${{ needs.build_jar.outputs.MINECRAFT_VERSION }}
+      PAPER_VERSION: ${{ needs.build_jar.outputs.PAPER_VERSION }}
+      PAPER_COMMIT: ${{ needs.build_jar.outputs.PAPER_COMMIT }}
     strategy:
       matrix:
         base_img: ${{ fromJSON(needs.base_img_matrix.outputs.matrix) }}
@@ -253,4 +257,4 @@ jobs:
 
       - name: startup test
         run: |
-          ./test/startup.sh "${GITHUB_REF#refs/heads/}-${{ matrix.jdk }}"
+          ./test/startup.sh "${GITHUB_REF#refs/heads/}-${{ needs.build_image.outputs.MINECRAFT_VERSION }}-${{ matrix.jdk }}"
