@@ -129,12 +129,9 @@ function main(){
 	# generate all tags
 	tags_tmp=""
 	for t in $tags; do
-		tags_tmp="$tags_tmp $(add_all $t)"
+		tags_tmp="$(add_all $t)"
+		gen_default "$tags_tmp"
 	done
-	tags="$tags_tmp"
-
-	# generate default version tags & output
-	gen_default "$tags"
 }
 
 if [ $# -eq 1 ]; then
