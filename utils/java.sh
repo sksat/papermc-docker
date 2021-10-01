@@ -28,7 +28,7 @@ ADOPT_NONOFFICIAL_OPENJ9=(
 # Eclipse temurin
 TEMURIN=(
   "eclipse-temurin:16.0.2_7-jdk amd64          sha256:c10b593e809df8e7b68123c3d0d1e55b901d95bcddf6f08faaed11055930648d"
-  "eclipse-temurin:16.0.2_7-jdk-focal amd64    sha256:8d90792b442d624250edef8a2550ae0c333e7772253609b4ea45d96b7034a20e"
+  "eclipse-temurin:16.0.2_7-jdk-focal amd64    sha256:338ddb7b62711ca901a9491552f209a2fd37c7cc565c0eab774e84c76b5d81ac"
   #"eclipse-temurin:16.0.2_7-jdk-focal arm64/v8"
 )
 
