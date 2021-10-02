@@ -3,7 +3,7 @@ name: Build Container Image
 on:
   push:
     paths:
-      - 'build.sh'
+      - 'utils/build-paper.sh'
       - 'health.sh'
       - 'utils/download-mc-monitor.sh'
       - 'entrypoint.sh'
@@ -65,7 +65,7 @@ jobs:
         if: steps.cache-paperclip.outputs.cache-hit != 'false'
         run: |
           ls
-          bash ./build.sh
+          bash ./utils/build-paper.sh
           ls -lh Paper/paperclip-${{ steps.paper-commit.outputs.PAPER_COMMIT }}.jar
           file Paper/paperclip-${{ steps.paper-commit.outputs.PAPER_COMMIT }}.jar
 
