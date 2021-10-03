@@ -97,11 +97,6 @@ function gen_default(){
 	local tags
 	tags="$1"
 
-	# default branch
-	if [[ $(git symbolic-ref --short HEAD) == "$DEFAULT_BRANCH" ]]; then
-		tags="$tags $(echo $tags | sed -e "s/${DEFAULT_BRANCH}//g")"
-	fi
-
 	# default JDK
 	if [[ $JDK == "$DEFAULT_JDK" ]]; then
 		tags="$tags $(echo $tags | sed -e "s/${DEFAULT_JDK}//g")"
@@ -137,6 +132,13 @@ function main(){
 		for t in $tags; do
 			echo "$base:$base_tag-$t"
 		done
+
+		# default branch
+		if [[ "$base_tag" == "$DEFAULT_BRANCH" ]]; then
+			for t in $tags; do
+				echo "$base:$t"
+			done
+		fi
 	done
 }
 
