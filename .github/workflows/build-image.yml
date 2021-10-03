@@ -238,6 +238,13 @@ jobs:
           pzstd img.tar
           file img.tar img.tar.zst
 
+      - name: Upload img.tar.zst as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          if-no-files-found: error
+          name: img-${{ matrix.base_img }}
+          path: img.tar.zst
+
   test:
     needs: build_image
     runs-on: ubuntu-latest
