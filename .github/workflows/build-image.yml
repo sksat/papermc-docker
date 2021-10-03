@@ -224,6 +224,7 @@ jobs:
 
       - name: Save docker image as tar
         run: |
+          docker images
           docker save "sksat/papermc-docker:prevent-branch-img-push-1.17.1-openjdk" > img.tar
           pzstd img.tar
           file img.tar img.tar.zst
