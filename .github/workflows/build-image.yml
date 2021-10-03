@@ -242,7 +242,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           if-no-files-found: error
-          name: img-${{ steps.img-info.jdk }}-${{ steps.img-info.base }}
+          name: img-${{ steps.img-info.outputs.jdk }}-${{ steps.img-info.outputs.base }}
           path: img.tar.zst
 
   test:
