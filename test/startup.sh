@@ -10,9 +10,6 @@ fi
 
 echo "image tag: ${IMG_TAG}"
 
-# image pull test
-docker pull "sksat/papermc-docker:${IMG_TAG}"
-
 mkdir -p data
 echo "eula=true" > data/eula.txt
 
