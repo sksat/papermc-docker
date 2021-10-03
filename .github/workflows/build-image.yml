@@ -223,7 +223,6 @@ jobs:
           cache-to: type=local,dest=/tmp/.buildx-cache-new
 
       - name: Save docker image as tar.zst
-        if: ${{ steps.img-info.outputs.base }}
         run: |
           docker save "sksat/papermc-docker:prevent-branch-img-push-1.17.1-openjdk" | pzstd -p $$(nproc) > img.tar.zst
 
