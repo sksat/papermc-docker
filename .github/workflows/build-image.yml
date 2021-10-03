@@ -216,6 +216,7 @@ jobs:
             "PAPER_VERSION=${{ needs.build_jar.outputs.PAPER_VERSION }}"
             "PAPER_COMMIT=${{ needs.build_jar.outputs.PAPER_COMMIT }}"
             "BASE_IMG=${{ matrix.base_img }}"
+          load: true
           push: ${{ github.ref == 'refs/heads/main' }}
           tags: ${{ steps.tags.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
