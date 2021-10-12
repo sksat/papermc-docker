@@ -2,7 +2,7 @@
 
 # Official OpenJDK images
 OPENJDK=(
-  "openjdk:16-slim amd64            sha256:e4cc8a50bdc7be6b9f44819c0ffffcb3a6f7f6b760cf35b2971c843900e0744b"
+  "openjdk:16-slim amd64            sha256:a9b5fe3754d84c6485f50fa0298a6269ef1da0ffddb9cc4b74cc523be874c506"
   #"openjdk:16-slim arm64/v8         sha256:d7e6afd5155486baacd0895276cc74d534babc17153776730509df4550db450d"
   "openjdk:16-slim-buster amd64     sha256:9dc954c2cb1e763571a2adce71122a18e64e87cf6a02f1e62ffdf72d3b419c37"
   #"openjdk:16-slim-buster arm64/v8  sha256:eb2c3e29cd8bead0443372f887d58ebf3ae163f674caeda4251cd5f37b93f4ec"
