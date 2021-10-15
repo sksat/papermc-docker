@@ -59,7 +59,6 @@ jobs:
         with:
           distribution: 'adopt-openj9'
           java-version: '16.0.2'
-          cache: 'gradle'
 
       - name: Build jar
         if: steps.cache-paperclip.outputs.cache-hit != 'true'
