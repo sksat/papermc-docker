@@ -24,13 +24,14 @@ if $CI; then
 fi
 
 # version check
-diff <(echo $MINECRAFT_VERSION) <(cat gradle.properties | grep 'mcVersion =' | sed -e 's/mcVersion = //')
-diff <(echo $PAPER_VERSION) <(cat gradle.properties | grep 'version =' | sed -e 's/version = //')
+#diff <(echo $MINECRAFT_VERSION) <(cat gradle.properties | grep 'mcVersion =' | sed -e 's/mcVersion = //')
+#diff <(echo $PAPER_VERSION) <(cat gradle.properties | grep 'version =' | sed -e 's/version = //')
 
-./gradlew tasks
-time ./gradlew applyPatches && time ./gradlew paperclipJar
+#./gradlew tasks
+#time ./gradlew applyPatches && time ./gradlew paperclipJar
+time ./paper jar
 
 find . | grep jar
-ls build/libs -lh
-cp build/libs/Paper-${PAPER_VERSION}.jar paperclip.jar
+#ls build/libs -lh
+#cp build/libs/Paper-${PAPER_VERSION}.jar paperclip.jar
 cp paperclip.jar paperclip-${PAPER_COMMIT}.jar
