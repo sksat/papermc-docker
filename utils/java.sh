@@ -14,7 +14,7 @@ OPENJDK=(
 ADOPT_NONOFFICIAL=(
   "adoptopenjdk/openjdk16:alpine amd64      sha256:f3e3e15f97acff0268ad7355c2098ee790688a5291b922b330ca099d2b001653"
   "adoptopenjdk/openjdk16:alpine-slim amd64 sha256:935946425596166fa866cb1243e87487dd5b78ed096d220d066ebcd2bce3e9be"
-  "adoptopenjdk/openjdk16:alpine-jre amd64  sha256:b252bdc40493b9a119c8e96cf4dea18879171050e7983f7fa930d29b867e7d9e"
+  "adoptopenjdk/openjdk16:alpine-jre amd64  sha256:44407bb50f83507056e66a86230b63fbfa318a872fd3f9449bd880acc0a4139e"
   #"adoptopenjdk/openjdk16:aarch64-debianslim-jre-16.0.1_9 aarch64"
   #"adoptopenjdk/openjdk16:armv7l-debianslim-jre-16.0.1_9 arm/v7"
 )
