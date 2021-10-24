@@ -231,7 +231,9 @@ jobs:
           for last in ${tags[@]}; do
             :
           done
-          docker inspect "$last"
+          docker images
+          img_id=$(docker images -q "${last}")
+          docker inspect "${img_id}"
 
       # Temp fix
       # https://github.com/docker/build-push-action/issues/252
