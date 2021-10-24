@@ -233,7 +233,7 @@ jobs:
           done
           docker images
           img_id=$(docker images -q "${last}")
-          docker inspect "${img_id}"
+          docker buildx imagetools inspect "${last}"
 
       # Temp fix
       # https://github.com/docker/build-push-action/issues/252
