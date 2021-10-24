@@ -224,15 +224,14 @@ jobs:
 
       - name: Check docker image
         run: |
-          tags=$(cat << EOS
+          tags="$(cat << EOS
           ${{ steps.tags.outputs.tags }}
           EOS
-          )
+          )"
           for last in ${tags[@]}; do
             :
           done
           docker images
-          img_id=$(docker images -q "${last}")
           docker buildx imagetools inspect "${last}"
 
       # Temp fix
