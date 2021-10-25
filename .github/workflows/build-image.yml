@@ -2,6 +2,9 @@ name: Build Container Image
 
 on:
   push:
+    branches:
+      - main
+  pull_request:
     paths:
       - 'utils/build-paper.sh'
       - 'health.sh'
