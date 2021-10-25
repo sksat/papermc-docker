@@ -1,6 +1,9 @@
-name: actionlint
+name: reviewdog / actionlint
 
 on:
+  push:
+    branches:
+      - main
   pull_request:
     paths:
       - '.github/workflows/**'
