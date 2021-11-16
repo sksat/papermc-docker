@@ -12,7 +12,7 @@ OPENJDK=(
 
 # Non-Official AdoptOpenJDK images(but AdoptOpenJDK maintained)
 ADOPT_NONOFFICIAL=(
-  "adoptopenjdk/openjdk16:alpine amd64      sha256:dd077e059b3fc80ac1655e6eae7a74194c3f5a21875686fe428dcbb88d33d597"
+  "adoptopenjdk/openjdk16:alpine amd64      sha256:2383a95528d16521ca41515115c7688c0ca6aaaab02b5e506bdf47c4f39b48d6"
   "adoptopenjdk/openjdk16:alpine-slim amd64 sha256:4074252e24ac9981034d4aaef6d95fe27f8cf99502987ec66007b704d5143c8d"
   "adoptopenjdk/openjdk16:alpine-jre amd64  sha256:ccbf240f53bb96ed3cb9b8cf39aa68d6f190958973e14460fe2e87c2d2556948"
   #"adoptopenjdk/openjdk16:aarch64-debianslim-jre-16.0.1_9 aarch64"
