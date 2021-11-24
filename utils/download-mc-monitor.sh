@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # datasource=github-releases depName=itzg/mc-monitor
-MC_MONITOR_VERSION="0.10.2"
+MC_MONITOR_VERSION="0.10.3"
 
 mkdir mc-monitor
 cd mc-monitor
