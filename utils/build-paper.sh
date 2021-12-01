@@ -33,5 +33,5 @@ time ./gradlew createReobfPaperclipJar
 
 find . | grep jar
 ls build/libs -lh
-cp build/libs/Paper-${PAPER_VERSION}.jar paperclip.jar
+cp build/libs/paper-paperclip-${PAPER_VERSION}-reobf.jar paperclip.jar
 cp paperclip.jar paperclip-${PAPER_COMMIT}.jar
