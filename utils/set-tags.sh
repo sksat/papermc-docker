@@ -4,12 +4,12 @@ cd `dirname $0`
 source ../.env
 
 DEFAULT_BRANCH='main'
-DEFAULT_JDK='adopt'
+DEFAULT_JDK='openjdk'
 
-if [[ "$JDK" == 'adopt' ]]; then
-	DEFAULT_BASE_IMG='alpine-jre'
-elif [[ "$JDK" == 'openjdk' ]]; then
+if [[ "$JDK" == 'openjdk' ]]; then
 	DEFAULT_BASE_IMG='16-slim'  # そうか？
+elif [[ "$JDK" == 'temurin' ]]; then
+	DEFAULT_BASE_IMG='16.0.2_7-jdk'
 fi
 
 #JDK=openjdk
