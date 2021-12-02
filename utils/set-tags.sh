@@ -7,9 +7,9 @@ DEFAULT_BRANCH='main'
 DEFAULT_JDK='openjdk'
 
 if [[ "$JDK" == 'openjdk' ]]; then
-	DEFAULT_BASE_IMG='16-slim'  # そうか？
+	DEFAULT_BASE_IMG='17-slim'  # そうか？
 elif [[ "$JDK" == 'temurin' ]]; then
-	DEFAULT_BASE_IMG='16.0.2_7-jdk'
+	DEFAULT_BASE_IMG='17.0.1_12-jdk'
 fi
 
 #JDK=openjdk
