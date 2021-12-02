@@ -17,11 +17,11 @@ Docker container for [PaperMC](https://papermc.io/)
 |`1.17.1`|![1.17.1](https://img.shields.io/docker/image-size/sksat/papermc-docker/1.17.1)|
 |`1.17.1-R0.1-SNAPSHOT`|![1.17.1-R0.1-SNAPSHOT](https://img.shields.io/docker/image-size/sksat/papermc-docker/1.17.1-R0.1-SNAPSHOT)|
 |`1.17.1-openjdk`|![1.17.1-openjdk](https://img.shields.io/docker/image-size/sksat/papermc-docker/1.17.1-openjdk)|
-|`1.17.1-openjdk-16-slim`|![1.17.1-openjdk-16-slim](https://img.shields.io/docker/image-size/sksat/papermc-docker/1.17.1-openjdk-16-slim)|
-|`1.17.1-openjdk-16-slim-buster`|![1.17.1-openjdk-16-slim-buster](https://img.shields.io/docker/image-size/sksat/papermc-docker/1.17.1-openjdk-16-slim-buster)|
-|`1.17.1-openjdk-16-oraclelinux8`|![1.17.1-openjdk-16-oraclelinux8](https://img.shields.io/docker/image-size/sksat/papermc-docker/1.17.1-openjdk-16-oraclelinux8)|
-|`1.17.1-eclipse-temurin-16.0.2_7-jdk`|![1.17.1-eclipse-temurin-16.0.2_7-jdk](https://img.shields.io/docker/image-size/sksat/papermc-docker/1.17.1-eclipse-temurin-16.0.2_7-jdk)|
-|`1.17.1-eclipse-temurin-16.0.2_7-jdk-focal`|![1.17.1-eclipse-temurin-16.0.2_7-jdk-focal](https://img.shields.io/docker/image-size/sksat/papermc-docker/1.17.1-eclipse-temurin-16.0.2_7-jdk-focal)|
+|`1.17.1-openjdk-17-slim`|![1.17.1-openjdk-17-slim](https://img.shields.io/docker/image-size/sksat/papermc-docker/1.17.1-openjdk-17-slim)|
+|`1.17.1-openjdk-17-slim-buster`|![1.17.1-openjdk-17-slim-buster](https://img.shields.io/docker/image-size/sksat/papermc-docker/1.17.1-openjdk-17-slim-buster)|
+|`1.17.1-openjdk-17-oraclelinux8`|![1.17.1-openjdk-17-oraclelinux8](https://img.shields.io/docker/image-size/sksat/papermc-docker/1.17.1-openjdk-17-oraclelinux8)|
+|`1.17.1-temurin-17.0.1_12-jdk`|![1.17.1-temurin-17.0.1_12-jdk](https://img.shields.io/docker/image-size/sksat/papermc-docker/1.17.1-temurin-17.0.1_12-jdk)|
+|`1.17.1-temurin-17.0.1_12-jdk-focal`|![1.17.1-temurin-17.0.1_12-jdk-focal](https://img.shields.io/docker/image-size/sksat/papermc-docker/1.17.1-temurin-17.0.1_12-jdk-focal)|
 
 
 ### Tags
@@ -37,10 +37,10 @@ Example: `main-1.17.1-R0.1-SNAPSHOT-d0a2193-alpine-jre` -> `1.17.1-alpine`
 
 |field|detail|default value|example|
 |-|-|-|-|
-|branch|branch name|`main`|`renovate/openjdk-16-slim`|
+|branch|branch name|`main`|`renovate/openjdk-17-slim`|
 |Minecraft version|Minecraft(PaperMC) version|N/A|`1.17.1`,`1.17.1-R0.1-SNAPSHOT`,`1.17.1-R0.1-SNAPSHOT-d0a2193`|
 |JDK|OpenJDK or Eclipse temurin|`openjdk`|`temurin`,`openjdk`|
-|base-img|Base Image|It depends on JDK. `openjdk`->`16-slim`|
+|base-img|Base Image|It depends on JDK. `openjdk`->`17-slim`|
 
 
 ## Deploy
