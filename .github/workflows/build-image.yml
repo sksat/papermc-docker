@@ -57,7 +57,7 @@ jobs:
         if: steps.cache-paperclip.outputs.cache-hit != 'true'
         uses: actions/setup-java@v2.3.1
         with:
-          distribution: 'adopt-openj9'
+          distribution: 'temurin'
           java-version: '16.0.2'
           cache: 'gradle'
 
@@ -161,9 +161,9 @@ jobs:
           echo "tag: $tag"
           echo "digest: $digest"
 
-          jdk="adopt"
-          if [[ $base =~ 'adoptopenjdk/openjdk' ]]; then
-            jdk='adopt'
+          jdk="openjdk"
+          if [[ $base =~ 'eclipse-temurin' ]]; then
+            jdk='temurin'
           else
             jdk="$base"
           fi
@@ -239,7 +239,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        jdk: ["openjdk", "adopt"]
+        jdk: ["openjdk", "temurin"]
 
     steps:
       - uses: actions/checkout@v2
