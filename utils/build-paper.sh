@@ -28,9 +28,10 @@ diff <(echo $MINECRAFT_VERSION) <(cat gradle.properties | grep 'mcVersion =' | s
 diff <(echo $PAPER_VERSION) <(cat gradle.properties | grep 'version =' | sed -e 's/version = //')
 
 ./gradlew tasks
-time ./gradlew applyPatches && time ./gradlew paperclipJar
+time ./gradlew applyPatches
+time ./gradlew createReobfPaperclipJar
 
 find . | grep jar
 ls build/libs -lh
-cp build/libs/Paper-${PAPER_VERSION}.jar paperclip.jar
+cp build/libs/paper-paperclip-${PAPER_VERSION}-reobf.jar paperclip.jar
 cp paperclip.jar paperclip-${PAPER_COMMIT}.jar
