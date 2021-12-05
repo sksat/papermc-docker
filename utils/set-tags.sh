@@ -23,6 +23,18 @@ function add_mc(){
 	echo "$1-${MINECRAFT_VERSION}"
 	echo "$1-${PAPER_VERSION}"
 	echo "$1-${PAPER_VERSION}-${commit_short}"
+
+	# FIXYOU: USE SEMVER!!!!!
+	local of_couse_you_should_have_patch_version
+	of_couse_you_should_have_patch_version=$(echo "${MINECRAFT_VERSION}" | awk -F'.' '{print $3}')
+
+	local why_not_use_semver
+	if [ -z "${of_couse_you_should_have_patch_version}" ]; then
+		# MAKE PATCH VERSION EXIST AGAIN!!!!!
+		why_not_use_semver="${MINECRAFT_VERSION}.0"
+
+		echo "$1-${why_not_use_semver}"
+	fi
 }
 
 function add_jdk(){
