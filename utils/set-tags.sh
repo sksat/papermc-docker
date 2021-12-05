@@ -34,6 +34,8 @@ function add_base(){
 }
 
 function fix_empty(){
+	# fix like hoge--fuga
+
 	local tag
 	tag="$1"
 
@@ -127,7 +129,7 @@ function main(){
 
 		# generate tags
 		tags=$(add_all "")
-		tags="$tags $(gen_default $tags)"
+		tags=$(gen_default "$tags")
 
 		for t in $tags; do
 			echo "$base:$base_tag-$t"
