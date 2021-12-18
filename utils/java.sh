@@ -12,7 +12,7 @@ OPENJDK=(
 
 # Eclipse temurin
 TEMURIN=(
-  "eclipse-temurin:17.0.1_12-jdk amd64          sha256:2b47a8ea946ce1e5365a1562414ed576e378b7b670cadff3fb98ebecf2890cdc"
+  "eclipse-temurin:17.0.1_12-jdk amd64          sha256:bed38ec59946f34ad99a883c232b8e46cc4e92ae24970b52b200ea03dd55a961"
   "eclipse-temurin:17.0.1_12-jdk-focal amd64    sha256:4480b1462288b8ca8a4daef0e9e137923e5a925043074d51d16fa18885e10e06"
   #"eclipse-temurin:16.0.2_7-jdk-focal arm64/v8"
 )
