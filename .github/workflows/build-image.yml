@@ -27,7 +27,7 @@ jobs:
       PAPER_COMMIT: ${{ steps.paper-commit.outputs.PAPER_COMMIT }}
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Get Paper commit
         id: paper-commit
@@ -47,7 +47,7 @@ jobs:
 
       - name: clone Paper
         if: steps.cache-paperclip.outputs.cache-hit != 'true'
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: PaperMC/Paper
           path: Paper
@@ -83,7 +83,7 @@ jobs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Set Base Image matrix
         id: set-matrix
@@ -106,10 +106,10 @@ jobs:
         base_img: ${{ fromJSON(needs.base_img_matrix.outputs.matrix) }}
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: clone Paper
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: PaperMC/Paper
           path: Paper
@@ -253,7 +253,7 @@ jobs:
         jdk: ["openjdk", "temurin"]
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Install dependencies
         run: |
