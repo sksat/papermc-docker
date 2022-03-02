@@ -116,7 +116,7 @@ jobs:
           ref: ${{ needs.build_jar.outputs.PAPER_COMMIT }}
 
       - name: download paperclip.jar from artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: paperclip-${{ needs.build_jar.outputs.PAPER_COMMIT }}
           path: paperclip-artifact
