@@ -70,7 +70,7 @@ jobs:
           file Paper/paperclip-${{ steps.paper-commit.outputs.PAPER_COMMIT }}.jar
 
       - name: Upload paperclip.jar as artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           if-no-files-found: error
           name: paperclip-${{ steps.paper-commit.outputs.PAPER_COMMIT }}
