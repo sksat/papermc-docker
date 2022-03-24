@@ -6,7 +6,7 @@ OPENJDK=(
   #"openjdk:16-slim arm64/v8         sha256:d7e6afd5155486baacd0895276cc74d534babc17153776730509df4550db450d"
   "openjdk:17-slim-buster amd64     sha256:b49d7785c13610fd2be03b4a6995ac9973aea069af7ae62110e92951a6a4250b"
   #"openjdk:16-slim-buster arm64/v8  sha256:eb2c3e29cd8bead0443372f887d58ebf3ae163f674caeda4251cd5f37b93f4ec"
-  "openjdk:17-oraclelinux8 amd64    sha256:f4cd622384264526042da9ba5ed3c8f24d377cf0f64ae8b684b06c95676062fa"
+  "openjdk:17-oraclelinux8 amd64    sha256:c4d9fe71b8bdf5ce40025303e25c9acf47093ace22149f7cb661a6aa7c53c14f"
   #"openjdk:16-oraclelinux8 arm64/v8 sha256:af04c50184d0227ece48c85e5535d622a9f4ed649d5f18e0f18f58c006b934c8"
 )
 
