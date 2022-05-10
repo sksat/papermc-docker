@@ -212,7 +212,7 @@ jobs:
 
       - name: Set up Buildx
         id: buildx
-        uses: docker/setup-buildx-action@v1
+        uses: docker/setup-buildx-action@v2
         with:
           # meantime solution from: https://github.com/docker/buildx/issues/834#issuecomment-965730742
           buildkitd-flags: --debug
