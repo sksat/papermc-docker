@@ -173,8 +173,10 @@ jobs:
           fi
 
           echo "jdk=${jdk}, base=${tag}"
-          echo "::set-output name=jdk::${jdk}"
-          echo "::set-output name=base::${tag}"
+          {
+            echo "jdk=${jdk}"
+            echo "base=${tag}"
+          } >> "$GITHUB_OUTPUT"
 
       - name: Set Tags
         id: tags
