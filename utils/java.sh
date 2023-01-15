@@ -42,7 +42,7 @@ function temurin_imgs(){
 
 if [[ $1 == 'jdk-list' ]]; then
 	# JDK matrix for build jar
-	echo "::set-output JDK_MATRIX=openjdk,temurin"
+	echo "JDK_MATRIX=openjdk,temurin" >> "$GITHUB_OUTPUT"
 elif [[ $1 == 'base-img' ]]; then
 	if [ $# -eq 1 ]; then
 		openjdk_imgs
