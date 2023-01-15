@@ -193,7 +193,7 @@ jobs:
           tags="${tags//'%'/'%25'}"
           tags="${tags//$'\n'/'%0A'}"
           tags="${tags//$'\r'/'%0D'}"
-          echo "::set-output name=tags::${tags}"
+          echo "tags=${tags}" >> "$GITHUB_OUTPUT"
 
       - name: Login to ghcr.io
         if: ${{ github.event_name }} != 'pull_request'
