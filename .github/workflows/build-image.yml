@@ -92,9 +92,11 @@ jobs:
         run: |
           imgs=$(./utils/java.sh base-img | tr '\n' ' ')
           imgs=$(echo "${imgs}" | sed -e 's/ /, /g')
-          echo -n '::set-output name=matrix::[' \
-          && echo -n ${imgs} \
-          && echo ']'
+          {
+            echo -n 'matrix=['
+            echo -n ${imgs}
+            echo ']'
+          } >> "$GITHUB_OUTPUT"
 
   build_image:
     runs-on: ubuntu-latest
