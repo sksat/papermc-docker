@@ -34,9 +34,11 @@ jobs:
         shell: bash
         run: |
           source .env
-          echo "MINECRAFT_VERSION=${MINECRAFT_VERSION}" >> "$GITHUB_OUTPUT"
-          echo "PAPER_VERSION=${PAPER_VERSION}" >> "$GITHUB_OUTPUT"
-          echo "PAPER_COMMIT=${PAPER_COMMIT}" >> "$GITHUB_OUTPUT"
+          {
+            echo "MINECRAFT_VERSION=${MINECRAFT_VERSION}"
+            echo "PAPER_VERSION=${PAPER_VERSION}"
+            echo "PAPER_COMMIT=${PAPER_COMMIT}"
+          } >> "$GITHUB_OUTPUT"
 
       - name: cache paperclip
         id: cache-paperclip
