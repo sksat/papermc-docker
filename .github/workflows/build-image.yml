@@ -34,9 +34,11 @@ jobs:
         shell: bash
         run: |
           source .env
-          echo "::set-output name=MINECRAFT_VERSION::${MINECRAFT_VERSION}"
-          echo "::set-output name=PAPER_VERSION::${PAPER_VERSION}"
-          echo "::set-output name=PAPER_COMMIT::${PAPER_COMMIT}"
+          {
+            echo "MINECRAFT_VERSION=${MINECRAFT_VERSION}"
+            echo "PAPER_VERSION=${PAPER_VERSION}"
+            echo "PAPER_COMMIT=${PAPER_COMMIT}"
+          } >> "$GITHUB_OUTPUT"
 
       - name: cache paperclip
         id: cache-paperclip
@@ -90,9 +92,11 @@ jobs:
         run: |
           imgs=$(./utils/java.sh base-img | tr '\n' ' ')
           imgs=$(echo "${imgs}" | sed -e 's/ /, /g')
-          echo -n '::set-output name=matrix::[' \
-          && echo -n ${imgs} \
-          && echo ']'
+          {
+            echo -n 'matrix=['
+            echo -n ${imgs}
+            echo ']'
+          } >> "$GITHUB_OUTPUT"
 
   build_image:
     runs-on: ubuntu-latest
@@ -169,8 +173,10 @@ jobs:
           fi
 
           echo "jdk=${jdk}, base=${tag}"
-          echo "::set-output name=jdk::${jdk}"
-          echo "::set-output name=base::${tag}"
+          {
+            echo "jdk=${jdk}"
+            echo "base=${tag}"
+          } >> "$GITHUB_OUTPUT"
 
       - name: Set Tags
         id: tags
@@ -184,10 +190,12 @@ jobs:
           EOS
           )
           echo "tags: ${tags}"
-          tags="${tags//'%'/'%25'}"
-          tags="${tags//$'\n'/'%0A'}"
-          tags="${tags//$'\r'/'%0D'}"
-          echo "::set-output name=tags::${tags}"
+          {
+            delim="$(openssl rand -hex 8)"
+            echo "tags<<${delim}"
+            echo "${tags}"
+            echo "${delim}"
+          } >> "${GITHUB_OUTPUT}"
 
       - name: Login to ghcr.io
         if: ${{ github.event_name }} != 'pull_request'
