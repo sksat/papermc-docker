@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # datasource=github-releases depName=itzg/mc-monitor
-MC_MONITOR_VERSION="0.11.0"
+MC_MONITOR_VERSION="0.11.1"
 
 MC_MONITOR_ARCH="amd64"
 case $(uname -m) in
