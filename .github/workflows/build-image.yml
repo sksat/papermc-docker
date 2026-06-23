@@ -42,7 +42,7 @@ jobs:
 
       - name: cache paperclip
         id: cache-paperclip
-        uses: actions/cache@v3
+        uses: actions/cache@v6
         with:
           path: Paper/paperclip-${{ steps.paper-commit.outputs.PAPER_COMMIT }}.jar
           key: paperclip-${{ runner.os }}-${{ steps.paper-commit.outputs.PAPER_COMMIT }}
@@ -140,7 +140,7 @@ jobs:
           fi
 
       - name: Cache Docker Layers
-        uses: actions/cache@v3
+        uses: actions/cache@v6
         with:
           path: /tmp/.buildx-cache
           key: ${{ runner.os }}-buildx-${{ github.sha }}
